@@ -1,0 +1,6 @@
+textarea, iframe {
+  width: 500px;
+  height: 300px;
+  float: left;
+  border-top: 1px solid #444;
+}
