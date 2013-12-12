@@ -1,5 +1,3 @@
-var jQuery = require('jQuery.js'); // not working yet
-
 $(function() {
   var contents  = $('iframe').contents();
   var body      = contents.find('body');
@@ -7,7 +5,7 @@ $(function() {
   var $scriptTag = $('<script>');
 
   contents.find('head').append($styleTag);
-  contents.find('head').append(jQuery);
+  contents.find('body').append($scriptTag);
 
   $('textarea').keyup(function() {
     var $this = $(this);
@@ -20,7 +18,7 @@ $(function() {
       $styleTag.text(val);
 
     } else {
-      body.append($scriptTag.text(val));
+      $scriptTag.text(val);
     }
   });
 });
