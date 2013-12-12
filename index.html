@@ -11,6 +11,7 @@
   <script src="./js/htmlmixed.js"></script>
   <script src="./js/xml.js"></script>
   <script src="./js/javascript.js"></script>
+  <script src="./js/app.js"></script>
 </head>
 <body>
 
@@ -20,27 +21,6 @@
 <textarea id="js"></textarea>
 
 <iframe id="preview"></iframe>
-
-<script>
-  var html = CodeMirror.fromTextArea(document.getElementById("html"), {
-    theme: "monokai",
-    lineNumbers: true,
-    mode: 'xml',
-    htmlMode: true
-  });
-
-  var css = CodeMirror.fromTextArea(document.getElementById("css"), {
-    theme: "monokai",
-    lineNumbers: true,
-    indentUnit: 2
-  });
-
-  var js = CodeMirror.fromTextArea(document.getElementById("js"), {
-    theme: "monokai",
-    lineNumbers: true,
-    mode: "text/javascript"
-  });
-</script>
 
 </body>
 </html>
