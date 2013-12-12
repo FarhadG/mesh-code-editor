@@ -21,6 +21,7 @@ div.CodeMirror {
 }
 
 iframe {
+  padding: 10px;
   width: 55%;
   border: none;
   background: #272822;

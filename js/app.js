@@ -34,9 +34,6 @@ $(function() {
   //   }
   // });
 
-  
-  
-
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     theme: "monokai",
     lineNumbers: true,
@@ -64,12 +61,16 @@ $(function() {
   var code = function() {
     return "<html>" +  
       "<style>" +
+      "*{font-size:24px;color:#999;}" +
       cssContent +
       "</style>" +
       htmlContent +
-      "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\"><" + "/script>" +    
-      "<script>" + 
-      jsContent + 
+      "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js\"><" + 
+      "/script>" +    
+      "<script>" +
+      "$(function(){" + 
+      jsContent +
+      "});" + 
       "<" +
       "/script>" +         
       "</html>";
