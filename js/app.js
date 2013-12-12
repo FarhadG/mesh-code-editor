@@ -18,10 +18,11 @@ $(function() {
     mode: "text/javascript"
   });
 
-  // event listeners
+  var code = html.getValue();
 
   var delay;
   html.on("change", function() {
+    code = html.getValue();
     clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
   });
@@ -36,11 +37,11 @@ $(function() {
     delay = setTimeout(updatePreview, 300);
   });
   
-  function updatePreview(el) {
+  function updatePreview() {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(html.getValue());
+    preview.write(code);
     preview.close();
   }
   setTimeout(updatePreview, 300);
