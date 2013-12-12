@@ -1,6 +1,6 @@
 $(function() {
   $('div, iframe').height( $(window).height() );
-  $('textarea').height( $(window).height() / 3.3 );
+  $('textarea').height( $(window).height() / 3.43 );
 
   $('textarea').width(window.width / 2);
 

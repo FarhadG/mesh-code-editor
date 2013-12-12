@@ -1,9 +1,12 @@
-* {
+*, *:before, *:after {
   padding: 0;
   margin: 0;
   border: none;
-  background: #fff;
+  background: #ddd;
   font-size: 14px;
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 div {
@@ -12,12 +15,12 @@ div {
 }
 
 div.boxes {
-  width: 44%;
+  width: 45%;
   float: left;
 }
 
 div.output {
-  width: 54%;
+  width: 55%;
   float: right;
 }
 
@@ -26,7 +29,7 @@ textarea {
   background: #555;
   width: 100%;
   padding-bottom: 1em;
-  padding: 10px;
+  padding: 15px;
 }
 
 iframe {
