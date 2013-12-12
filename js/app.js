@@ -7,14 +7,28 @@ $(function() {
 
   $textarea.click(function() {
     if ($(this).attr('class') === 'html') {
-      $(this).height($(window).height() / 2)
-      $('textarea.css, textarea.js').height($(window).height() / 5.34);
+      $(this).animate({
+        height: $(window).height() / 2
+      }, 200);
+      $('textarea.css, textarea.js').animate({
+        height: $(window).height() / 4.1
+      }, 200);
+
     } else if ($(this).attr('class') === 'css') {
-      $(this).height($(window).height() / 2)
-      $('textarea.html, textarea.js').height($(window).height() / 5.34);
+      $(this).animate({
+        height: $(window).height() / 2
+      }, 200);
+      $('textarea.html, textarea.js').animate({
+        height: $(window).height() / 4.1
+      }, 200);
+
     } else {
-      $(this).height($(window).height() / 2)
-      $('textarea.html, textarea.css').height($(window).height() / 5.34);
+      $(this).animate({
+        height: $(window).height() / 2
+      }, 200);
+      $('textarea.html, textarea.css').animate({
+        height: $(window).height() / 4.1
+      }, 200);
     }
   });
 
