@@ -9,6 +9,13 @@
   box-sizing: border-box;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
 div {
   display: inline-block;
   box-sizing: border-box;
@@ -30,6 +37,7 @@ textarea {
   width: 100%;
   padding-bottom: 1em;
   padding: 15px;
+  font-family: monaco;
 }
 
 iframe {
