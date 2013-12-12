@@ -2,15 +2,17 @@
   padding: 0;
   margin: 0;
   border: none;
-  background: #ddd;
+  background: #fff;
+  font-size: 14px;
 }
 
 div {
   display: inline-block;
+  box-sizing: border-box;
 }
 
 div.boxes {
-  width: 45%;
+  width: 44%;
   float: left;
 }
 
@@ -20,9 +22,11 @@ div.output {
 }
 
 textarea {
-  background: #fff;
+  color: #ccc;
+  background: #555;
   width: 100%;
   padding-bottom: 1em;
+  padding: 10px;
 }
 
 iframe {

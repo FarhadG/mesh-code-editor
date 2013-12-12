@@ -1,29 +1,27 @@
 $(function() {
   $('div, iframe').height( $(window).height() );
-  $('textarea').height( $(window).height() / 3.17 );
-
-  var contents  = $('iframe').contents();
-  var body      = contents.find('body');
-  var $styleTag  = $('<style>');
-  var $scriptTag = $('<script>');
-
-  contents.find('head').append($styleTag);
-  contents.find('body').append($scriptTag);
+  $('textarea').height( $(window).height() / 3.3 );
 
   $('textarea').width(window.width / 2);
 
   $('textarea').keyup(function() {
-    var $this = $(this);
-    var val   = $this.val();
+    var htmlContent = $('textarea.html').val();
+    var cssContent  = $('textarea.css').val();
+    var jsContent   = $('textarea.js').val();
 
-    if ($this.attr('class') === 'html') {
-      body.html(val);
-
-    } else if ($this.attr('class') === 'css') {
-      $styleTag.text(val);
-
-    } else {
-      $scriptTag.text(val);
-    }
+    $("#frame").attr(
+      "src", "data:text/html;charset=utf-8," + 
+      "<html>" +  
+      "<style>" +
+      cssContent +
+      "</style>" +
+      htmlContent +
+      "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\"><" + "/script>" +    
+      "<script>" + 
+      jsContent + 
+      "<" +
+      "/script>" +         
+      "</html>"
+    );
   });
 });
