@@ -9,6 +9,7 @@
   <script src="./js/codemirror.js"></script>
   <script src="./js/css.js"></script>
   <script src="./js/htmlmixed.js"></script>
+  <script src="./js/xml.js"></script>
   <script src="./js/javascript.js"></script>
 </head>
 <body>
@@ -21,21 +22,19 @@
 <script>
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     lineNumbers: true,
-    matchBrackets: true,
     theme: 'monokai',
-    mode: 'html'
+    mode: 'xml',
+    htmlMode: true
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
     lineNumbers: true,
-    matchBrackets: true,
     theme: 'monokai',
     mode: 'css'
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
     lineNumbers: true,
-    matchBrackets: true,
     theme: 'monokai',
     mode: 'javascript'
   });

@@ -1,3 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.2em;
+}
+
 div.CodeMirror {
-  width: 50%;
+  width: 40%;
+  height: 240px;
+  margin-bottom: 1px;
+  padding: 10px 5px 10px 0px;
 }
