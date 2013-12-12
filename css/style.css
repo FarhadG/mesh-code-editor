@@ -13,13 +13,12 @@
 
 div.CodeMirror {
   width: 45%;
-  height: 260px;
-  margin-bottom: 1px;
   padding: 10px 5px 10px 0px;
+  border-bottom: 1px solid #444;
 }
 
 iframe {
   width: 55%;
-  height: 782px;
   border: none;
+  background: red;
 }
