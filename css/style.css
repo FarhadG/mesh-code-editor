@@ -3,6 +3,7 @@
   margin: 0;
   font-size: 15px;
   line-height: 1.2em;
+  background: #272822;
 }
 
 *, *:before, *:after {
@@ -15,7 +16,7 @@ div.CodeMirror {
   width: 45%;
   padding: 10px 5px 10px 0px;
   border-bottom: 1px solid #363636;
-  height: 260px;
+  height: 265px;
   border-right: 1px solid #363636;
 }
 
