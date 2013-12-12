@@ -1,10 +1,24 @@
 $(function() {
-  $('div, iframe').height( $(window).height() );
-  $('textarea').height( $(window).height() / 3.43 );
+  $textarea = $('textarea');
 
-  $('textarea').width(window.width / 2);
+  $('div, iframe').height($(window).height());
+  $textarea.height($(window).height() / 3.43);
 
-  $('textarea').keyup(function() {
+
+  $textarea.click(function() {
+    if ($(this).attr('class') === 'html') {
+      $(this).height($(window).height() / 2)
+      $('textarea.css, textarea.js').height($(window).height() / 5.34);
+    } else if ($(this).attr('class') === 'css') {
+      $(this).height($(window).height() / 2)
+      $('textarea.html, textarea.js').height($(window).height() / 5.34);
+    } else {
+      $(this).height($(window).height() / 2)
+      $('textarea.html, textarea.css').height($(window).height() / 5.34);
+    }
+  });
+
+  $textarea.keyup(function() {
     var htmlContent = $('textarea.html').val();
     var cssContent  = $('textarea.css').val();
     var jsContent   = $('textarea.js').val();
