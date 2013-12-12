@@ -1,10 +1,13 @@
+var jQuery = require('jQuery.js'); // not working yet
+
 $(function() {
   var contents  = $('iframe').contents();
   var body      = contents.find('body');
-  var styleTag  = $('<style>').appendTo(contents.find('head'));
-  var scriptTag  = $('<script>').appendTo(contents.find('body'));
-  var jquery    = $('<script type="text/javascript" src="./js/app.js"></script>');
-  jquery.appendTo(contents.find('head'));
+  var $styleTag  = $('<style>');
+  var $scriptTag = $('<script>');
+
+  contents.find('head').append($styleTag);
+  contents.find('head').append(jQuery);
 
   $('textarea').keyup(function() {
     var $this = $(this);
@@ -14,10 +17,10 @@ $(function() {
       body.html(val);
 
     } else if ($this.attr('class') === 'css') {
-      styleTag.text(val);
+      $styleTag.text(val);
 
     } else {
-      // insert javascript
+      body.append($scriptTag.text(val));
     }
   });
 });
