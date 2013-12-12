@@ -1,4 +1,7 @@
 $(function() {
+  $('div, iframe').height( $(window).height() );
+  $('textarea').height( $(window).height() / 3.17 );
+
   var contents  = $('iframe').contents();
   var body      = contents.find('body');
   var $styleTag  = $('<style>');
