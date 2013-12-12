@@ -1,7 +1,9 @@
 $(function() {
 
   $('#preview').height($(window).height());
-  $('div.CodeMirror').height($(window).height());
+  $('div.CodeMirror').click(function() {
+    $(this).css('height', $(window).height()); 
+  });
 
   // $textarea.click(function() {
   //   var $this = $(this);

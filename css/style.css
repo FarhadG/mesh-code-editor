@@ -14,11 +14,14 @@
 div.CodeMirror {
   width: 45%;
   padding: 10px 5px 10px 0px;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #363636;
+  height: 260px;
+  border-right: 1px solid #363636;
 }
 
 iframe {
   width: 55%;
   border: none;
-  background: red;
+  background: #272822;
+  color: white;
 }
