@@ -5,9 +5,23 @@
   line-height: 1.2em;
 }
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
 div.CodeMirror {
-  width: 40%;
-  height: 240px;
+  width: 45%;
+  height: 260px;
   margin-bottom: 1px;
   padding: 10px 5px 10px 0px;
+}
+
+iframe {
+  width: 55%;
+  height: 782px;
+  border: none;
+  background: #ccc;
+  padding: 10px;
 }

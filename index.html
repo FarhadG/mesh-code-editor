@@ -19,24 +19,26 @@
 <textarea id="css"></textarea>
 <textarea id="js"></textarea>
 
+<iframe id="preview"></iframe>
+
 <script>
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
+    theme: "monokai",
     lineNumbers: true,
-    theme: 'monokai',
     mode: 'xml',
     htmlMode: true
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
+    theme: "monokai",
     lineNumbers: true,
-    theme: 'monokai',
-    mode: 'css'
+    indentUnit: 2
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
+    theme: "monokai",
     lineNumbers: true,
-    theme: 'monokai',
-    mode: 'javascript'
+    mode: "text/javascript"
   });
 </script>
 
