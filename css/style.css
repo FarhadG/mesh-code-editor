@@ -1,6 +1,16 @@
-textarea, iframe {
-  width: 500px;
-  height: 300px;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+textarea {
+  width: 50%;
+  height: 230px;
   float: left;
   border-top: 1px solid #444;
+}
+
+iframe {
+  width: 48%;
+  height: 700px;
 }

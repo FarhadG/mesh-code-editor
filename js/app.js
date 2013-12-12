@@ -7,6 +7,8 @@ $(function() {
   contents.find('head').append($styleTag);
   contents.find('body').append($scriptTag);
 
+  $('textarea').width(window.width / 2);
+
   $('textarea').keyup(function() {
     var $this = $(this);
     var val   = $this.val();
