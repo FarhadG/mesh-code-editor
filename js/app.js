@@ -4,7 +4,6 @@ $(function() {
   $('div, iframe').height($(window).height());
   $textarea.height($(window).height() / 3.43);
 
-
   $textarea.click(function() {
     var $this = $(this);
 
