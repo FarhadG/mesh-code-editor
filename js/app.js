@@ -6,7 +6,7 @@ $(function() {
 
 
   $textarea.click(function() {
-    var $this = $this;
+    var $this = $(this);
 
     if ($this.attr('class') === 'html') {
       $this.animate({
