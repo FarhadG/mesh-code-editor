@@ -6,16 +6,18 @@ $(function() {
 
 
   $textarea.click(function() {
-    if ($(this).attr('class') === 'html') {
-      $(this).animate({
+    var $this = $this;
+
+    if ($this.attr('class') === 'html') {
+      $this.animate({
         height: $(window).height() / 2
       }, 200);
       $('textarea.css, textarea.js').animate({
         height: $(window).height() / 4.1
       }, 200);
 
-    } else if ($(this).attr('class') === 'css') {
-      $(this).animate({
+    } else if ($this.attr('class') === 'css') {
+      $this.animate({
         height: $(window).height() / 2
       }, 200);
       $('textarea.html, textarea.js').animate({
@@ -23,7 +25,7 @@ $(function() {
       }, 200);
 
     } else {
-      $(this).animate({
+      $this.animate({
         height: $(window).height() / 2
       }, 200);
       $('textarea.html, textarea.css').animate({
