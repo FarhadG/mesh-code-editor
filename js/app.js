@@ -54,11 +54,11 @@ $(function() {
     mode: "text/javascript"
   });
 
-  var htmlContent = html.getValue();
-  var cssContent = css.getValue();
-  var jsContent = js.getValue();
-
   var code = function() {
+    var htmlContent = html.getValue();
+    var cssContent = css.getValue();
+    var jsContent = js.getValue();
+
     return "<html>" +  
       "<style>" +
       "*{font-size:24px;color:#999;}" +
@@ -78,19 +78,16 @@ $(function() {
 
   var delay;
   html.on("change", function() {
-    htmlContent = html.getValue();
     clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
   });
 
   css.on("change", function() {
-    cssContent = css.getValue();
     clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
   });
 
   js.on("change", function() {
-    jsContent = js.getValue();
     clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
   });
