@@ -2,33 +2,44 @@
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" href="./css/style.css" type="text/css" >
-  <script type="text/javascript" src="./js/jquery.js"></script>
-  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-  <script type="text/javascript" src="./js/app.js"></script>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
+  <link rel="stylesheet" href="./css/codemirror.css" type="text/css">
+  <link rel="stylesheet" href="./css/monokai.css" type="text/css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="./js/codemirror.js"></script>
+  <script src="./js/css.js"></script>
+  <script src="./js/htmlmixed.js"></script>
+  <script src="./js/javascript.js"></script>
 </head>
 <body>
 
-<div class="boxes">
 
-<form>
-  <textarea class="html"></textarea>
-</form>
+<textarea id="html"></textarea>
+<textarea id="css"></textarea>
+<textarea id="js"></textarea>
 
-<form>
-  <textarea class="css"></textarea>
-</form>
+<script>
+  var html = CodeMirror.fromTextArea(document.getElementById("html"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    theme: 'monokai',
+    mode: 'html'
+  });
 
-<form>
-  <textarea class="js"></textarea>
-</form>
-</div>
+  var css = CodeMirror.fromTextArea(document.getElementById("css"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    theme: 'monokai',
+    mode: 'css'
+  });
 
-<div class="output">
-  <iframe id="frame"></iframe>
-</div>
-
-
+  var js = CodeMirror.fromTextArea(document.getElementById("js"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    theme: 'monokai',
+    mode: 'javascript'
+  });
+</script>
 
 </body>
 </html>
