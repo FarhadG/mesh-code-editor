@@ -108,22 +108,32 @@ $(function() {
     Dynamic Text Box Sizing 
    *************************/
 
-  var windowHeight = $(window).height();
-  var windowWidth   = $(window).width();
+  var resizeBoxes = function() {
+    var windowHeight = $(window).height();
+    var windowWidth   = $(window).width();
 
-  var frameHeight = $('#frame').height(windowHeight / 2);
-  var frameWidth  = $('#frame').width(windowWidth / 2);
+    var frameHeight = $('#frame').height(windowHeight / 2);
+    var frameWidth  = $('#frame').width(windowWidth / 2);
 
-  $('#preview').height(frameHeight);
-  $('#preview').width(frameWidth);  
-  
-  $textBoxes = $('.CodeMirror');
-  $.each($textBoxes, function(idx, box) {
-    $(box).height(windowHeight / 2.2);
-    $(box).width(windowWidth / 2.15);
-  });
+    $('#preview').height(frameHeight);
+    $('#preview').width(frameWidth);  
+    
+    $textBoxes = $('.CodeMirror');
+    $.each($textBoxes, function(idx, box) {
+      $(box).height(windowHeight / 2.2);
+      $(box).width(windowWidth / 2.15);
+    });
+  };
+
+  resizeBoxes();
 
   $('#frame').draggable().resizable({
     handles: 'n, e, s, w, ne, se, sw, nw'
   });
+
+
+  $(window).resize(function() {
+    resizeBoxes();
+  });
+
 });
