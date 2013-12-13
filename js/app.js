@@ -24,10 +24,26 @@ $(function() {
     mode: "text/javascript"
   });
 
-  html.setValue("<p><span id=\"mesh\"> Mesh </span> up your magic </p>\n");
-  css.setValue("/* Insert your CSS here */\n" +
-                "#mesh { color: red; }\n");
-  js.setValue("/* Insert your JavaScript here */\n");
+  var htmlVal = "<!-- Insert your HTML here -->\n" +
+                "<p><span>Mesh</span> up your\n" +
+                "HTML, CSS and JavaScript.<br /><br />\n\n" +
+                "For maximum pleasure,\n" +
+                "drag and resize the preview box\n" +
+                "by using your pointer\n" +
+                "along its sexy border lines.</p>\n";
+
+  var cssVal  = "/* Insert your CSS here */\n" +
+                "* { padding: 5px; color: #999; }\n" +
+                "span { color: red; }\n";
+
+  var jsVal   = "/* Insert your JavaScript here */\n" +
+                "$('body').click(function() {\n" + 
+                  "\talert(\"jQuery's also meshed\");\n" +
+                "});";
+
+  html.setValue(htmlVal);
+  css.setValue(cssVal);
+  js.setValue(jsVal);
 
 
   /************************
@@ -44,9 +60,6 @@ $(function() {
       "href=\"http://raw.github.com/necolas/normalize.css/master/normalize.css\" " +
       "type=\"text/css\">" +
       "<style>" +
-      "*{color:#999;" +
-      "font-family:sans-serif;" +
-      "font-weight: normal;}" +
       cssContent +
       "</style>" +
       htmlContent +

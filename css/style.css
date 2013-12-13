@@ -386,6 +386,6 @@ div.CodeMirror {
   margin: .5em;
   border: 15px solid #42433d;
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 15px;
+  right: 15px;
 }
