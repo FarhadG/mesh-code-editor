@@ -1,52 +1,5 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-
 body {
-  line-height: 1;
   background: #272822;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 .CodeMirror {
@@ -339,19 +292,21 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   color: white !important;
 }
 
-
 .ui-resizable {
   position: relative;
 }
+
 .ui-resizable-handle {
   position: absolute;
   font-size: 0.1px;
   display: block;
 }
+
 .ui-resizable-disabled .ui-resizable-handle,
 .ui-resizable-autohide .ui-resizable-handle {
   display: none;
 }
+
 .ui-resizable-n {
   cursor: n-resize;
   height: 7px;
@@ -359,6 +314,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   top: -5px;
   left: 0;
 }
+
 .ui-resizable-s {
   cursor: s-resize;
   height: 7px;
@@ -366,6 +322,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   bottom: -5px;
   left: 0;
 }
+
 .ui-resizable-e {
   cursor: e-resize;
   width: 7px;
@@ -373,6 +330,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   top: 0;
   height: 100%;
 }
+
 .ui-resizable-w {
   cursor: w-resize;
   width: 7px;
@@ -380,6 +338,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   top: 0;
   height: 100%;
 }
+
 .ui-resizable-se {
   cursor: se-resize;
   width: 12px;
@@ -387,6 +346,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   right: 1px;
   bottom: 1px;
 }
+
 .ui-resizable-sw {
   cursor: sw-resize;
   width: 9px;
@@ -394,6 +354,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   left: -5px;
   bottom: -5px;
 }
+
 .ui-resizable-nw {
   cursor: nw-resize;
   width: 9px;
@@ -401,6 +362,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   left: -5px;
   top: -5px;
 }
+
 .ui-resizable-ne {
   cursor: ne-resize;
   width: 9px;
@@ -417,6 +379,7 @@ div.CodeMirror {
 #preview { 
   width: 100%;
   height: 100%;
+  border: none;
 }
 
 #frame {

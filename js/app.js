@@ -39,7 +39,10 @@ $(function() {
     var cssContent = css.getValue();
     var jsContent = js.getValue();
 
-    return "<html>" +  
+    return "<html>" +
+      "<link rel=\"stylesheet\" " +
+      "href=\"http://raw.github.com/necolas/normalize.css/master/normalize.css\" " +
+      "type=\"text/css\">" +
       "<style>" +
       "*{color:#999;" +
       "font-family:sans-serif;" +
