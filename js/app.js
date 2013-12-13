@@ -24,6 +24,10 @@ $(function() {
     mode: "text/javascript"
   });
 
+  html.setValue("<p><span id=\"mesh\"> MESH </span> CODE EDITOR </p>\n");
+  css.setValue("/* Insert your CSS here */\n" +
+                "#mesh { color: red; }\n");
+  js.setValue("/* Insert your JavaScript here */\n");
 
   /************************
     Iframe Content Builder 
@@ -36,7 +40,9 @@ $(function() {
 
     return "<html>" +  
       "<style>" +
-      "*{font-size:24px;color:#999;}" +
+      "*{color:#999;" +
+      "font-family:sans-serif;" +
+      "font-weight: normal;}" +
       cssContent +
       "</style>" +
       htmlContent +
