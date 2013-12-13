@@ -38,7 +38,7 @@ $(function() {
 
   var jsVal   = "/* Insert your JavaScript here */\n" +
                 "$('body').click(function() {\n" + 
-                  "\talert(\"jQuery's also meshed\");\n" +
+                  "\tconsole.log(\"jQuery's also meshed\");\n" +
                 "});";
 
   html.setValue(htmlVal);
