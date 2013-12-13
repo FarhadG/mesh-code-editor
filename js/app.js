@@ -1,9 +1,11 @@
 $(function() {
 
-  $('#preview').height($(window).height());
+  /************
+    TEXT BOXES
+   ************/
 
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
-    theme: "monokai",
+    theme: "monokai html",
     lineNumbers: true,
     mode: 'xml',
     htmlMode: true,
@@ -11,18 +13,23 @@ $(function() {
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
-    theme: "monokai",
+    theme: "monokai css",
     lineNumbers: true,
     mode: "text/css"
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
-    theme: "monokai",
+    theme: "monokai js",
     lineNumbers: true,
     mode: "text/javascript"
   });
 
-  var previewContent = function() {
+
+  /************************
+    Iframe Content Builder 
+   ************************/
+
+  var buildContent = function() {
     var htmlContent = html.getValue();
     var cssContent = css.getValue();
     var jsContent = js.getValue();
@@ -42,6 +49,11 @@ $(function() {
       "</script>" +
       "</html>";
   };
+
+
+  /*****************
+    Event Listeners 
+   *****************/
 
   var delay;
   html.on("change", function() {
@@ -63,8 +75,26 @@ $(function() {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(previewContent());
+    preview.write(buildContent());
     preview.close();
   }
   setTimeout(updatePreview, 300);
-})
+
+
+  /*************************
+    Dynamic Text Box Sizing 
+   *************************/
+
+  var windowHeight = $(window).height() / 2.2;
+  var windowidth   = $(window).width() / 2.15;
+
+  $('#preview').height(windowHeight);
+  $('#preview').width(windowidth + 20);
+  
+  $textBoxes = $('.CodeMirror');
+  $.each($textBoxes, function(idx, box) {
+    $(box).height(windowHeight);
+    $(box).width(windowidth);
+  });
+
+});
