@@ -384,13 +384,8 @@ div.CodeMirror {
 }
 
 #frame {
-  margin: .5em;
   border: 15px solid #42433d;
   position: fixed;
-  bottom: 15px;
-  right: 15px;
-}
-
-.cm-s-html {
-  display: block;
+  bottom: 20px;
+  right: 20px;
 }

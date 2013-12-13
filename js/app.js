@@ -5,21 +5,20 @@ $(function() {
    ************/
 
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
-    theme: "monokai html",
+    theme: "monokai",
     lineNumbers: true,
     mode: 'xml',
-    htmlMode: true,
-    defaultValue: "cool"
+    htmlMode: true
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
-    theme: "monokai css",
+    theme: "monokai",
     lineNumbers: true,
     mode: "text/css"
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
-    theme: "monokai js",
+    theme: "monokai",
     lineNumbers: true,
     mode: "text/javascript"
   });
@@ -38,7 +37,7 @@ $(function() {
 
   var jsVal   = "/* Insert your JavaScript here */\n" +
                 "$('body').click(function() {\n" + 
-                  "\tconsole.log(\"jQuery's also meshed\");\n" +
+                "\tconsole.log(\"jQuery's also meshed\");\n" +
                 "});";
 
   html.setValue(htmlVal);
@@ -55,8 +54,7 @@ $(function() {
     var cssContent = css.getValue();
     var jsContent = js.getValue();
 
-    return "<html>" +
-      "<link rel=\"stylesheet\" " +
+    return "<link rel=\"stylesheet\" " +
       "href=\"http://raw.github.com/necolas/normalize.css/master/normalize.css\" " +
       "type=\"text/css\">" +
       "<style>" +
@@ -69,8 +67,7 @@ $(function() {
       "$(function(){" + 
       jsContent +
       "});" + 
-      "</script>" +
-      "</html>";
+      "</script>"
   };
 
 
@@ -108,16 +105,14 @@ $(function() {
     Dynamic Text Box Sizing 
    *************************/
 
-  var resizeBoxes = function() {
+  $('#frame').animate({
+    "height" : ($(window).height() / 1.8),
+    "width" : ($(window).width() / 2)
+  }, 1000);
+
+  var resizeBoxes = function() { 
     var windowHeight = $(window).height();
-    var windowWidth   = $(window).width();
-
-    var frameHeight = $('#frame').height(windowHeight / 2);
-    var frameWidth  = $('#frame').width(windowWidth / 2);
-
-    $('#preview').height(frameHeight);
-    $('#preview').width(frameWidth);  
-    
+    var windowWidth  = $(window).width();
     $textBoxes = $('.CodeMirror');
     $.each($textBoxes, function(idx, box) {
       $(box).height(windowHeight / 2.2);
@@ -127,13 +122,12 @@ $(function() {
 
   resizeBoxes();
 
-  $('#frame').draggable().resizable({
-    handles: 'n, e, s, w, ne, se, sw, nw'
-  });
-
-
   $(window).resize(function() {
     resizeBoxes();
+  });
+
+  $('#frame').draggable().resizable({
+    handles: 'n, e, s, w, ne, se, sw, nw'
   });
 
 });
