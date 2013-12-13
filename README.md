@@ -24,9 +24,9 @@ This project is in its early stages and will continue to grow with new features.
 You can simply fork and clone (or download) Mesh into your local directory:
 
 ```
-  $ git clone http://www.github.com/farhadg/mesh-code-editor
+  $ git clone https://www.github.com/farhadg/mesh-code-editor
 ```
-<img src="https://i41.tinypic.com/2v3j2hc.png" border="0">
+<img src="http://i41.tinypic.com/2v3j2hc.png" border="0">
 
 ## Usage
 
