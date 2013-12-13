@@ -29,6 +29,7 @@ $(function() {
                 "#mesh { color: red; }\n");
   js.setValue("/* Insert your JavaScript here */\n");
 
+
   /************************
     Iframe Content Builder 
    ************************/
@@ -106,5 +107,7 @@ $(function() {
     $(box).width(windowWidth / 2.15);
   });
 
-  $('#frame').draggable().resizable();
+  $('#frame').draggable().resizable({
+    handles: 'n, e, s, w, ne, se, sw, nw'
+  });
 });
