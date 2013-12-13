@@ -1,38 +1,6 @@
 $(function() {
 
   $('#preview').height($(window).height());
-  // $('div.CodeMirror').click(function() {
-  //   $(this).css('height', $(window).height()); 
-  // });
-
-  // $textarea.click(function() {
-  //   var $this = $(this);
-
-  //   if ($this.attr('class') === 'html') {
-  //     $this.animate({
-  //       height: $(window).height() / 2
-  //     }, 200);
-  //     $('textarea.css, textarea.js').animate({
-  //       height: $(window).height() / 4.1
-  //     }, 200);
-
-  //   } else if ($this.attr('class') === 'css') {
-  //     $this.animate({
-  //       height: $(window).height() / 2
-  //     }, 200);
-  //     $('textarea.html, textarea.js').animate({
-  //       height: $(window).height() / 4.1
-  //     }, 200);
-
-  //   } else {
-  //     $this.animate({
-  //       height: $(window).height() / 2
-  //     }, 200);
-  //     $('textarea.html, textarea.css').animate({
-  //       height: $(window).height() / 4.1
-  //     }, 200);
-  //   }
-  // });
 
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     theme: "monokai",
@@ -54,7 +22,7 @@ $(function() {
     mode: "text/javascript"
   });
 
-  var code = function() {
+  var previewContent = function() {
     var htmlContent = html.getValue();
     var cssContent = css.getValue();
     var jsContent = js.getValue();
@@ -65,14 +33,13 @@ $(function() {
       cssContent +
       "</style>" +
       htmlContent +
-      "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js\"><" + 
-      "/script>" +    
+      "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js\">" +
+      "</script>" +
       "<script>" +
       "$(function(){" + 
       jsContent +
       "});" + 
-      "<" +
-      "/script>" +         
+      "</script>" +
       "</html>";
   };
 
@@ -96,7 +63,7 @@ $(function() {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(code());
+    preview.write(previewContent());
     preview.close();
   }
   setTimeout(updatePreview, 300);
