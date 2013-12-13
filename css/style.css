@@ -313,7 +313,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 
 .cm-s-monokai.CodeMirror {background: #272822; color: #f8f8f2;display: inline-block;float: left;}
 .cm-s-monokai div.CodeMirror-selected {background: #49483E !important;}
-.cm-s-monokai .CodeMirror-gutters {background: #272822; border-right: 0px;}
+.cm-s-monokai .CodeMirror-gutters {background: rgba(0,0,0,0); border-right: 0px;}
 .cm-s-monokai .CodeMirror-linenumber {color: #999999;}
 .cm-s-monokai .CodeMirror-cursor {border-left: 1px solid #f8f8f0 !important;}
 
@@ -344,10 +344,16 @@ div.CodeMirror {
   margin: .5em;
 }
 
-iframe {
+#preview { 
+  width: 100%;
+  height: 100%;
+}
+
+#frame {
   margin: .5em;
-  border-top: 1px solid #555;
-  border-bottom: 1px solid #111;
-  background: rgba(255,255,255,.1);
-  border-radius: 5px;
+  border: 15px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }

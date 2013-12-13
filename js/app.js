@@ -24,7 +24,7 @@ $(function() {
     mode: "text/javascript"
   });
 
-  html.setValue("<p><span id=\"mesh\"> MESH </span> CODE EDITOR </p>\n");
+  html.setValue("<p><span id=\"mesh\"> Mesh </span> up your magic </p>\n");
   css.setValue("/* Insert your CSS here */\n" +
                 "#mesh { color: red; }\n");
   js.setValue("/* Insert your JavaScript here */\n");
@@ -91,16 +91,20 @@ $(function() {
     Dynamic Text Box Sizing 
    *************************/
 
-  var windowHeight = $(window).height() / 2.2;
-  var windowidth   = $(window).width() / 2.15;
+  var windowHeight = $(window).height();
+  var windowWidth   = $(window).width();
 
-  $('#preview').height(windowHeight);
-  $('#preview').width(windowidth + 20);
+  var frameHeight = $('#frame').height(windowHeight / 2);
+  var frameWidth  = $('#frame').width(windowWidth / 2);
+
+  $('#preview').height(frameHeight);
+  $('#preview').width(frameWidth);  
   
   $textBoxes = $('.CodeMirror');
   $.each($textBoxes, function(idx, box) {
-    $(box).height(windowHeight);
-    $(box).width(windowidth);
+    $(box).height(windowHeight / 2.2);
+    $(box).width(windowWidth / 2.15);
   });
 
+  $('#frame').draggable().resizable();
 });
