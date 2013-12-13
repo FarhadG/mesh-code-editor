@@ -13,7 +13,7 @@ $(function() {
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
     theme: "monokai",
     lineNumbers: true,
-    indentUnit: 2
+    mode: "text/css"
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
@@ -59,7 +59,7 @@ $(function() {
     delay = setTimeout(updatePreview, 300);
   });
   
-  function updatePreview() {
+  var updatePreview = function() {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
