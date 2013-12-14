@@ -31,9 +31,9 @@ You can simply fork and clone (or download) Mesh into your local directory:
 
 Fire up `index.html` for the online code editor. You will be presented with some default text that'll provide you an idea of the layout.
 
-The preview box can be adjusted and dragged around for your meshing convenience. Be sure to select and drag around the edges (handlers), since the content within the box are independent of this behaviour.
+The preview box can be adjusted and dragged around. Be sure to select and drag around the edges (handlers), since the contents within the frame are exempt of this behaviour.
 
-You can also switch between a dark or light theme--whichever fits your meshing needs best.
+You can also switch between a dark or light theme--whichever suits your meshing.
 
 For basic editor modifications, checkout `js/app.js` and `css/style.css`.
 
