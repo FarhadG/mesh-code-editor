@@ -400,12 +400,12 @@ div.CodeMirror {
 }
 
 .lights {
-  background-color: #19CE53;
+  background-color: #000;
   width: 20px;
   height: 20px;
   display: block;
 }
 
 .lights-on {
-  background-color: #C23535;
+  background-color: #fff;
 }
