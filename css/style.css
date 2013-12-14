@@ -1,5 +1,5 @@
 body {
-  background: #272822;
+  background: #ffffff;
   font-size: 1.2em;
 }
 
@@ -29,8 +29,8 @@ body {
 /* GUTTER */
 
 .CodeMirror-gutters {
-  border-right: 1px solid #ddd;
-  background-color: #f7f7f7;
+  background-color: background: rgba(0,0,0,0);
+  border-right: 0px;
   white-space: nowrap;
 }
 .CodeMirror-linenumbers {}
@@ -38,7 +38,7 @@ body {
   padding: 0 3px 0 5px;
   min-width: 20px;
   text-align: right;
-  color: #999;
+  color: #ccc;
 }
 
 /* CURSOR */
@@ -72,7 +72,7 @@ body {
 .cm-s-default .cm-variable-2 {color: #05a;}
 .cm-s-default .cm-variable-3 {color: #085;}
 .cm-s-default .cm-property {color: black;}
-.cm-s-default .cm-operator {color: black;}
+.cm-s-default .cm-operator {color: #666;}
 .cm-s-default .cm-comment {color: #a50;}
 .cm-s-default .cm-string {color: #a11;}
 .cm-s-default .cm-string-2 {color: #f50;}
@@ -106,6 +106,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
    the editor. You probably shouldn't touch them. */
 
 .CodeMirror {
+  display: inline-block;float: left;
   line-height: 1.2em;
   position: relative;
   overflow: hidden;
@@ -265,10 +266,10 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   }
 }
 
-.cm-s-monokai.CodeMirror {background: #272822; color: #f8f8f2;display: inline-block;float: left;}
+.cm-s-monokai {background: #272822;}
+.cm-s-monokai.CodeMirror {background: #272822; color: #f8f8f2;}
 .cm-s-monokai div.CodeMirror-selected {background: #49483E !important;}
-.cm-s-monokai .CodeMirror-gutters {background: rgba(0,0,0,0); border-right: 0px;}
-.cm-s-monokai .CodeMirror-linenumber {color: #999999;}
+.cm-s-monokai .CodeMirror-linenumber {color: #555;}
 .cm-s-monokai .CodeMirror-cursor {border-left: 1px solid #f8f8f0 !important;}
 
 .cm-s-monokai span.cm-comment {color: #75715e;}
@@ -384,8 +385,26 @@ div.CodeMirror {
 }
 
 #frame {
-  border: 15px solid #42433d;
+  border: 10px solid #3D3D3B;
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+#controls {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 999;
+}
+
+.lights {
+  background-color: #19CE53;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.lights-on {
+  background-color: #C23535;
 }

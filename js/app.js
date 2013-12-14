@@ -5,7 +5,6 @@ $(function() {
    ************/
 
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
-    theme: "monokai",
     lineNumbers: true,
     lineWrapping: true,
     mode: 'xml',
@@ -13,14 +12,12 @@ $(function() {
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
-    theme: "monokai",
     lineNumbers: true,
     lineWrapping: true,
     mode: "text/css"
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
-    theme: "monokai",
     lineNumbers: true,
     lineWrapping: true,
     mode: "text/javascript"
@@ -31,8 +28,9 @@ $(function() {
                 "HTML, CSS and JavaScript.<br /><br />\n\n" +
                 "For maximum pleasure,\n" +
                 "drag and resize the preview box\n" +
-                "by using your pointer\n" +
-                "along its sexy border lines.</p>\n";
+                "by slowly using your pointer\n" +
+                "along its sexy border lines.<br /><br />\n\n" + 
+                "To spice it up, you can turn on/off the lights.</p>\n";
 
   var cssVal  = "/* Insert your CSS here */\n" +
                 "* { padding: 5px; color: #999; }\n" +
@@ -103,6 +101,11 @@ $(function() {
   }
   setTimeout(updatePreview, 300);
 
+  $('.lights').click(function(el) {
+    el.preventDefault();
+    $('.cm-s-default').toggleClass('cm-s-monokai');
+    $(this).toggleClass('lights-on');
+  }).click();
 
   /*************************
     Dynamic Text Box Sizing 
