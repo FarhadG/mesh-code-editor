@@ -26,7 +26,6 @@ You can simply fork and clone (or download) Mesh into your local directory:
 ```
   $ git clone https://www.github.com/farhadg/mesh-code-editor
 ```
-<img src="http://i41.tinypic.com/2v3j2hc.png" border="0">
 
 ## Usage
 
@@ -34,7 +33,7 @@ Fire up `index.html` for the online code editor. You will be presented with some
 
 The preview box can be adjusted and dragged around for your meshing convenience. Be sure to select and drag around the edges (handlers), since the content within the box are independent of this behaviour.
 
-<img src="http://i42.tinypic.com/30rwdiu.png" border="0">
+You can also switch between a dark or light theme--whichever fits your meshing needs best.
 
 For basic editor modifications, checkout `js/app.js` and `css/style.css`.
 
