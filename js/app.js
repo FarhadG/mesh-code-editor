@@ -7,6 +7,7 @@ $(function() {
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     theme: "monokai",
     lineNumbers: true,
+    lineWrapping: true,
     mode: 'xml',
     htmlMode: true
   });
@@ -14,12 +15,14 @@ $(function() {
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
     theme: "monokai",
     lineNumbers: true,
+    lineWrapping: true,
     mode: "text/css"
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
     theme: "monokai",
     lineNumbers: true,
+    lineWrapping: true,
     mode: "text/javascript"
   });
 
