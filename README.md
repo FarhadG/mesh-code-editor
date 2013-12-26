@@ -5,6 +5,10 @@ Mesh is a sleek online code editor for HTML, CSS and JavaScript.
 
 This project is in its early stages and will continue to grow with new features. If something is not working or you would like a new feature, please use the issues page.
 
+## Demo
+
+Click for a demo: <a href="http://farhadg.github.io/mesh-code-editor" target="_blank">Mesh Code Editor</a>.
+
 ## Languages
 
 <table>
