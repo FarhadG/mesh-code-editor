@@ -142,7 +142,7 @@ $(function() {
 
   setTimeout(function() {
     setInterval(sync, 0);
-  }, 1500);
+  }, 2000);
   
 
 
