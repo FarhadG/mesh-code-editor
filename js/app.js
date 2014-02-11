@@ -1,6 +1,6 @@
 $(function() {
 
-  var appRef = new Firebase("https://mesh-editor.firebaseio.com/");
+  var appRef = new Firebase('https://mesh-editor.firebaseio.com/');
   var position = {
     html: { line: 0, ch: 0 },
     css:  { line: 0, ch: 0 },
@@ -16,7 +16,7 @@ $(function() {
     mode: 'xml',
     htmlMode: true,
     showCursorWhenSelecting: true,
-    pollInterval: 300
+    pollInterval: 1000
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
@@ -24,7 +24,7 @@ $(function() {
     lineWrapping: true,
     mode: "text/css",
     showCursorWhenSelecting: true,
-    pollInterval: 300
+    pollInterval: 1000
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
@@ -32,7 +32,7 @@ $(function() {
     lineWrapping: true,
     mode: "text/javascript",
     showCursorWhenSelecting: true,
-    pollInterval: 300
+    pollInterval: 1000
   });
 
 
@@ -67,22 +67,6 @@ $(function() {
     var cssContent = css.getValue();
     var jsContent = js.getValue();
 
-    position.html = html.getCursor();
-    position.css = css.getCursor();
-    position.js = js.getCursor();
-
-    appRef.set({
-      htmlBox: {
-        text: htmlContent
-      },
-      cssBox: {
-        text: cssContent
-      },
-      jsBox: {
-        text: jsContent
-      }
-    });
-
     return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
       + '<style>'
         + cssContent 
@@ -100,25 +84,25 @@ $(function() {
   /*==========  CODE EVENT LISTENERS  ==========*/
 
   var delay;
-  html.on("keyup", function() {
+  html.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
-    }, 100);
+    }, 300);
   });
 
-  css.on("keyup", function() {
+  css.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
-    }, 100);
+    }, 300);
   });
 
-  js.on("keyup", function() {
+  js.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
-    }, 100);
+    }, 300);
   });
 
 
@@ -132,7 +116,32 @@ $(function() {
     preview.close();
   }
 
-  setInterval(updatePreview, 1000);
+  setInterval(updatePreview, 300);
+
+
+  var sync = function() {
+    var htmlContent = html.getValue();
+    var cssContent = css.getValue();
+    var jsContent = js.getValue();
+
+    position.html = html.getCursor();
+    position.css = css.getCursor();
+    position.js = js.getCursor();
+
+    appRef.set({
+      htmlBox: {
+        text: htmlContent
+      },
+      cssBox: {
+        text: cssContent
+      },
+      jsBox: {
+        text: jsContent
+      }
+    });
+  };
+
+  setInterval(sync, 0);
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/

@@ -37,7 +37,7 @@ Fire up `index.html` for the online code editor. You will be presented with some
 
 The preview box can be adjusted and dragged around. Be sure to select and drag around the edges (handlers), since the contents within the frame are exempt of this behaviour.
 
-You can also switch between a dark or light theme--whichever suits your meshing.
+You can also switch between a dark or light theme.
 
 For basic editor modifications, checkout `js/app.js` and `css/style.css`.
 
