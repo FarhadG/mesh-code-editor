@@ -16,25 +16,19 @@ $(function() {
     lineNumbers: true,
     lineWrapping: true,
     mode: 'xml',
-    htmlMode: true,
-    showCursorWhenSelecting: true,
-    pollInterval: 1000
+    htmlMode: true
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
     lineNumbers: true,
     lineWrapping: true,
-    mode: "text/css",
-    showCursorWhenSelecting: true,
-    pollInterval: 1000
+    mode: "text/css"
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
     lineNumbers: true,
     lineWrapping: true,
-    mode: "text/javascript",
-    showCursorWhenSelecting: true,
-    pollInterval: 1000
+    mode: "text/javascript"
   });
 
 
