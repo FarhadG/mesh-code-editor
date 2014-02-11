@@ -143,7 +143,7 @@ $(function() {
 
   setTimeout(function() {
     setInterval(sync, 0);
-  }, 1000);
+  }, 1500);
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
