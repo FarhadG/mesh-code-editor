@@ -140,9 +140,7 @@ $(function() {
     });
   };
 
-  setTimeout(function() {
-    setInterval(sync, 0);
-  }, 2000);
+  setInterval(sync, 0);
   
 
 
