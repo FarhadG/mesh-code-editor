@@ -118,36 +118,29 @@ $(function() {
 
   setInterval(updatePreview, 300);
 
+  var sync = function() {
+  var htmlContent = html.getValue();
+  var cssContent = css.getValue();
+  var jsContent = js.getValue();
 
-  var initialize = function() {
-    var sync = function() {
-      var htmlContent = html.getValue();
-      var cssContent = css.getValue();
-      var jsContent = js.getValue();
+  position.html = html.getCursor();
+  position.css = css.getCursor();
+  position.js = js.getCursor();
 
-      position.html = html.getCursor();
-      position.css = css.getCursor();
-      position.js = js.getCursor();
-
-      appRef.set({
-        htmlBox: {
-          text: htmlContent
-        },
-        cssBox: {
-          text: cssContent
-        },
-        jsBox: {
-          text: jsContent
-        }
-      });
-    };
-
-    setInterval(sync, 0);
+  appRef.set({
+    htmlBox: {
+      text: htmlContent
+    },
+    cssBox: {
+      text: cssContent
+    },
+    jsBox: {
+      text: jsContent
+    }
+    });
   };
 
-  initialize();
-
-  
+  setInterval(sync, 0);
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
