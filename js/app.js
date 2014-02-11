@@ -38,14 +38,14 @@ $(function() {
                   "by slowly using your pointer\n" +
                   "along its sexy border lines.<br /><br />\n\n" + 
                   "To spice it up, you can turn on/off the lights.</p>\n",
-        position: 0
+        position: {line: 0, ch: 0}
       },
 
       cssBox: {
         text:     "/* Insert your CSS here */\n" +
                   "* { padding: 5px; color: #999; }\n" +
                   "span { color: red; }\n",
-        position: 0
+        position: {line: 0, ch: 0}
       },
 
       jsBox: {
@@ -53,15 +53,30 @@ $(function() {
                   "$('body').click(function() {\n" + 
                   "\tconsole.log(\"jQuery's also meshed\");\n" +
                   "});\n",
-        position: 0
+        position: {line: 0, ch: 0}
       }
     });
   }
 
   appRef.on('value', function(snapshot) {
-    html.setValue(snapshot.val().htmlBox.text);
-    css.setValue(snapshot.val().cssBox.text);
-    js.setValue(snapshot.val().jsBox.text);
+    var content = snapshot.val(); 
+    html.setValue(content.htmlBox.text);
+    html.setCursor({
+      line: content.htmlBox.position.line,
+      ch: content.htmlBox.position.ch
+    });
+
+    css.setValue(content.cssBox.text);
+    css.setCursor({
+      line: content.cssBox.position.line,
+      ch: content.cssBox.position.ch
+    });
+
+    js.setValue(content.jsBox.text);
+    js.setCursor({
+      line: content.jsBox.position.line,
+      ch: content.jsBox.position.ch
+    });
   });
 
 
@@ -74,18 +89,22 @@ $(function() {
     var cssContent = css.getValue();
     var jsContent = js.getValue();
 
+    var htmlCursor = html.getCursor();
+    var cssCursor = css.getCursor();
+    var jsCursor = js.getCursor();
+
     appRef.set({
       htmlBox: {
         text: htmlContent,
-        position: 0
+        position: htmlCursor
       },
       cssBox: {
         text: cssContent,
-        position: 0
+        position: cssCursor
       },
       jsBox: {
         text: jsContent,
-        position: 0
+        position: jsCursor
       }
     });
 
@@ -114,19 +133,22 @@ $(function() {
   html.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
-      var position = html.getCursor();
-      updatePreview(position);
+      updatePreview(html.getCursor());
     }, 300);
   });
 
   css.on("change", function() {
     clearTimeout(delay);
-    delay = setTimeout(updatePreview, 300);
+    delay = setTimeout(function() {
+      updatePreview(css.getCursor());
+    }, 300);
   });
 
   js.on("change", function() {
     clearTimeout(delay);
-    delay = setTimeout(updatePreview, 300);
+    delay = setTimeout(function() {
+      updatePreview(js.getCursor());
+    }, 300);
   });
 
   var updatePreview = function(position) {
@@ -137,13 +159,13 @@ $(function() {
     preview.close();
   }
 
-  // setInterval(updatePreview, 300);
+  setInterval(updatePreview, 300);
 
-  // $('.lights').click(function(el) {
-  //   el.preventDefault();
-  //   $('.cm-s-default').toggleClass('cm-s-monokai');
-  //   $(this).toggleClass('lights-on');
-  // }).click();
+  $('.lights').click(function(el) {
+    el.preventDefault();
+    $('.cm-s-default').toggleClass('cm-s-monokai');
+    $(this).toggleClass('lights-on');
+  }).click();
 
   /*************************
     Dynamic Text Box Sizing 
