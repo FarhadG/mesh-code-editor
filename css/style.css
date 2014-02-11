@@ -399,6 +399,7 @@ div.CodeMirror {
 }
 
 .lights {
+  background: url('');
   transition: all .3s ease;
   background-color: #555550;
   width: 30px;

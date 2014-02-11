@@ -1,5 +1,7 @@
 $(function() {
 
+
+
   var appRef = new Firebase('https://mesh-editor.firebaseio.com/');
   var position = {
     html: { line: 0, ch: 0 },
@@ -40,7 +42,9 @@ $(function() {
 
   appRef.on('value', function(snapshot) {
     var content = snapshot.val();
+    notifyFireBase = false;
     html.setValue(content.htmlBox.text);
+    notifyFireBase = true;
     html.setCursor({
       line: position.html.line,
       ch: position.html.ch
@@ -80,68 +84,59 @@ $(function() {
       + '</script>'
   };
 
-
   /*==========  CODE EVENT LISTENERS  ==========*/
+    function sync(){
+      var htmlContent = html.getValue();
+      var cssContent = css.getValue();
+      var jsContent = js.getValue();
 
-  var delay;
+      position.html = html.getCursor();
+      position.css = css.getCursor();
+      position.js = js.getCursor();
+
+      appRef.set({
+        htmlBox: {
+          text: htmlContent
+        },
+        cssBox: {
+          text: cssContent
+        },
+        jsBox: {
+          text: jsContent
+        }
+      });
+    }
+
+  var notifyFireBase = true;
   html.on("change", function() {
-    clearTimeout(delay);
-    delay = setTimeout(function() {
-      updatePreview();
-    }, 300);
+    updatePreview();
+    if(notifyFireBase) sync();
   });
 
   css.on("change", function() {
-    clearTimeout(delay);
-    delay = setTimeout(function() {
-      updatePreview();
-    }, 300);
+    updatePreview();
   });
 
   js.on("change", function() {
-    clearTimeout(delay);
-    delay = setTimeout(function() {
-      updatePreview();
-    }, 300);
+    updatePreview();
   });
 
 
   /*==========  PREVIEW UPDATING  ==========*/
-
+  var delay;
   var updatePreview = function() {
-    var previewFrame = document.getElementById('preview');
-    var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
-    preview.open();
-    preview.write(getContent());
-    preview.close();
+    clearTimeout(delay);
+    delay = setTimeout(update, 300);
+    function update(){
+      var previewFrame = document.getElementById('preview');
+      var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+      preview.open();
+      preview.write(getContent());
+      preview.close();
+    }
   }
 
-  setInterval(updatePreview, 300);
-
-  var sync = function() {
-    var htmlContent = html.getValue();
-    var cssContent = css.getValue();
-    var jsContent = js.getValue();
-
-    position.html = html.getCursor();
-    position.css = css.getCursor();
-    position.js = js.getCursor();
-
-    appRef.set({
-      htmlBox: {
-        text: htmlContent
-      },
-      cssBox: {
-        text: cssContent
-      },
-      jsBox: {
-        text: jsContent
-      }
-    });
-  };
-
-  setInterval(sync, 0);
-  
+  setInterval(updatePreview, 300);  
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
