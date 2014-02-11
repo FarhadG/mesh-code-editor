@@ -1,6 +1,11 @@
 $(function() {
 
   var appRef = new Firebase("https://mesh-editor.firebaseio.com/");
+  var position = {
+    html: { line: 0, ch: 0 },
+    css: { line: 0, ch: 0 },
+    js: { line: 0, ch: 0 }
+  };
 
 
   /*==========  MESH CODE EDITOR BOXES  ==========*/
@@ -28,23 +33,23 @@ $(function() {
   /*==========  FIREBASE DATA FETCHING  ==========*/    
 
   appRef.on('value', function(snapshot) {
-    var content = snapshot.val(); 
+    var content = snapshot.val();
     html.setValue(content.htmlBox.text);
     html.setCursor({
-      line: content.htmlBox.position.line,
-      ch: content.htmlBox.position.ch
+      line: position.html.line,
+      ch: position.html.ch
     });
 
     css.setValue(content.cssBox.text);
     css.setCursor({
-      line: content.cssBox.position.line,
-      ch: content.cssBox.position.ch
+      line: position.css.line,
+      ch: position.css.ch
     });
 
     js.setValue(content.jsBox.text);
     js.setCursor({
-      line: content.jsBox.position.line,
-      ch: content.jsBox.position.ch
+      line: position.js.line,
+      ch: position.js.ch
     });
   });
 
@@ -56,39 +61,33 @@ $(function() {
     var cssContent = css.getValue();
     var jsContent = js.getValue();
 
-    var htmlCursor = html.getCursor();
-    var cssCursor = css.getCursor();
-    var jsCursor = js.getCursor();
+    position.html = html.getCursor();
+    position.css = css.getCursor();
+    position.js = js.getCursor();
 
     appRef.set({
       htmlBox: {
-        text: htmlContent,
-        position: htmlCursor
+        text: htmlContent
       },
       cssBox: {
-        text: cssContent,
-        position: cssCursor
+        text: cssContent
       },
       jsBox: {
-        text: jsContent,
-        position: jsCursor
+        text: jsContent
       }
     });
 
-    return "<link rel=\"stylesheet\" " +
-      "href=\"http://raw.github.com/necolas/normalize.css/master/normalize.css\" " +
-      "type=\"text/css\">" +
-      "<style>" +
-      cssContent +
-      "</style>" +
-      htmlContent +
-      "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js\">" +
-      "</script>" +
-      "<script>" +
-      "$(function(){" + 
-      jsContent +
-      "});" + 
-      "</script>"
+    return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
+      + '<style>'
+        + cssContent 
+      + '</style>'
+      + htmlContent
+      + '<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>'
+      + '<script>'
+        + '$(function(){'
+          + jsContent
+        + '});'
+      + '</script>'
   };
 
 
@@ -127,7 +126,7 @@ $(function() {
     preview.close();
   }
 
-  setInterval(updatePreview, 300);
+  setInterval(updatePreview, 1000);
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
