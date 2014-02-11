@@ -141,7 +141,9 @@ $(function() {
     });
   };
 
-  setInterval(sync, 0);
+  setTimeout(function() {
+    setInterval(sync, 0);
+  }, 1000);
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
