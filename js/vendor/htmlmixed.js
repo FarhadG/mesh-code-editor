@@ -101,4 +101,5 @@ CodeMirror.defineMode("htmlmixed", function(config, parserConfig) {
   };
 }, "xml", "javascript", "css");
 
+
 CodeMirror.defineMIME("text/html", "htmlmixed");

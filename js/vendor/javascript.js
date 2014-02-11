@@ -6,8 +6,6 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   var jsonMode = parserConfig.json;
   var isTS = parserConfig.typescript;
 
-  // Tokenizer
-
   var keywords = function(){
     function kw(type) {return {type: type, style: "keyword"};}
     var A = kw("keyword a"), B = kw("keyword b"), C = kw("keyword c");

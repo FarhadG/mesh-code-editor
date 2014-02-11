@@ -5,7 +5,6 @@ window.CodeMirror = (function() {
   "use strict";
 
   // BROWSER SNIFFING
-
   // Crude, but necessary to handle a number of hard-to-feature-detect
   // bugs and behavior differences.
   var gecko = /gecko\/\d/i.test(navigator.userAgent);

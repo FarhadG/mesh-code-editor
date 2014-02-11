@@ -132,7 +132,6 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       // dimension (5px), string ("foo"), or function. Officially defined
       //  by the CSS 2.1 grammar (look for the 'term' production)
       //
-      //
       // simple selector:
       // A single atomic selector, like a type selector, an attr selector, a
       // class selector, etc.

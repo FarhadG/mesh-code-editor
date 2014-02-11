@@ -1,7 +1,7 @@
 MESH 
 ====
 
-Mesh is a sleek online code editor for HTML, CSS, JavaScript, and jQuery.
+Mesh is a sleek collaborative online code editor for HTML, CSS, JavaScript, and jQuery.
 
 This project is in its early stages and will continue to grow with new features. If something is not working or you would like a new feature, please use the issues page.
 
