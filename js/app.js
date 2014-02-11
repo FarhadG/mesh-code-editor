@@ -142,9 +142,7 @@ $(function() {
       });
     };
 
-    appRef.on('value', function(data) {
-      setInterval(sync, 0);
-    });
+    setInterval(sync, 0);
   };
 
   initialize();
