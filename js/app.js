@@ -100,21 +100,21 @@ $(function() {
   /*==========  CODE EVENT LISTENERS  ==========*/
 
   var delay;
-  html.on("change", function() {
+  html.on("keyup", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
     }, 100);
   });
 
-  css.on("change", function() {
+  css.on("keyup", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
     }, 100);
   });
 
-  js.on("change", function() {
+  js.on("keyup", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
