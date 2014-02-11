@@ -1,8 +1,10 @@
 $(function() {
 
-
-
   var appRef = new Firebase('https://mesh-editor.firebaseio.com/');
+
+
+  /*==========  User's Cursor  ==========*/
+  
   var position = {
     html: { line: 0, ch: 0 },
     css:  { line: 0, ch: 0 },
@@ -34,27 +36,32 @@ $(function() {
 
   /*==========  FIREBASE DATA FETCHING  ==========*/    
 
+  var notifyFireBase = true;
+
   appRef.on('value', function(snapshot) {
     var content = snapshot.val();
+    
     notifyFireBase = false;
     html.setValue(content.htmlBox.text);
+    css.setValue(content.cssBox.text);
+    js.setValue(content.jsBox.text);
     notifyFireBase = true;
+    
     html.setCursor({
       line: position.html.line,
       ch: position.html.ch
     });
 
-    css.setValue(content.cssBox.text);
     css.setCursor({
       line: position.css.line,
       ch: position.css.ch
     });
 
-    js.setValue(content.jsBox.text);
     js.setCursor({
       line: position.js.line,
       ch: position.js.ch
     });
+
   });
 
 
@@ -79,40 +86,42 @@ $(function() {
   };
 
   /*==========  CODE EVENT LISTENERS  ==========*/
-    function sync(){
-      var htmlContent = html.getValue();
-      var cssContent = css.getValue();
-      var jsContent = js.getValue();
 
-      position.html = html.getCursor();
-      position.css = css.getCursor();
-      position.js = js.getCursor();
+  var sync = function() {
+    var htmlContent = html.getValue();
+    var cssContent = css.getValue();
+    var jsContent = js.getValue();
 
-      appRef.set({
-        htmlBox: {
-          text: htmlContent
-        },
-        cssBox: {
-          text: cssContent
-        },
-        jsBox: {
-          text: jsContent
-        }
-      });
-    }
+    position.html = html.getCursor();
+    position.css = css.getCursor();
+    position.js = js.getCursor();
 
-  var notifyFireBase = true;
+    appRef.set({
+      htmlBox: {
+        text: htmlContent
+      },
+      cssBox: {
+        text: cssContent
+      },
+      jsBox: {
+        text: jsContent
+      }
+    });
+  };
+  
   html.on("change", function() {
     updatePreview();
-    if(notifyFireBase) sync();
+    if (notifyFireBase) sync();
   });
 
   css.on("change", function() {
     updatePreview();
+    if (notifyFireBase) sync();
   });
 
   js.on("change", function() {
     updatePreview();
+    if (notifyFireBase) sync();
   });
 
 
@@ -120,17 +129,19 @@ $(function() {
   var delay;
   var updatePreview = function() {
     clearTimeout(delay);
-    delay = setTimeout(update, 300);
-    function update(){
+
+    var update = function() {
       var previewFrame = document.getElementById('preview');
       var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
       preview.open();
       preview.write(getContent());
       preview.close();
-    }
+    };
+
+    delay = setTimeout(update, 500);
   }
 
-  setInterval(updatePreview, 300);  
+  setInterval(updatePreview, 1000);  
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
