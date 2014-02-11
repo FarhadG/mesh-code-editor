@@ -3,8 +3,8 @@ $(function() {
   var appRef = new Firebase("https://mesh-editor.firebaseio.com/");
   var position = {
     html: { line: 0, ch: 0 },
-    css: { line: 0, ch: 0 },
-    js: { line: 0, ch: 0 }
+    css:  { line: 0, ch: 0 },
+    js:   { line: 0, ch: 0 }
   };
 
 
@@ -14,19 +14,25 @@ $(function() {
     lineNumbers: true,
     lineWrapping: true,
     mode: 'xml',
-    htmlMode: true
+    htmlMode: true,
+    showCursorWhenSelecting: true,
+    pollInterval: 300
   });
 
   var css = CodeMirror.fromTextArea(document.getElementById("css"), {
     lineNumbers: true,
     lineWrapping: true,
-    mode: "text/css"
+    mode: "text/css",
+    showCursorWhenSelecting: true,
+    pollInterval: 300
   });
 
   var js = CodeMirror.fromTextArea(document.getElementById("js"), {
     lineNumbers: true,
     lineWrapping: true,
-    mode: "text/javascript"
+    mode: "text/javascript",
+    showCursorWhenSelecting: true,
+    pollInterval: 300
   });
 
 
@@ -94,25 +100,25 @@ $(function() {
   /*==========  CODE EVENT LISTENERS  ==========*/
 
   var delay;
-  html.on("keyup", function() {
+  html.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
-    }, 500);
+    }, 100);
   });
 
-  css.on("keyup", function() {
+  css.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
-    }, 500);
+    }, 100);
   });
 
-  js.on("keyup", function() {
+  js.on("change", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
       updatePreview();
-    }, 500);
+    }, 100);
   });
 
 
@@ -139,7 +145,7 @@ $(function() {
 
   $('#frame').animate({
     "height" : ($(window).height() / 1.8),
-    "width" : ($(window).width() / 2)
+    "width"  : ($(window).width() / 2)
   }, 1000);
 
   var resizeBoxes = function() { 
