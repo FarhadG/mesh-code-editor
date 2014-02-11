@@ -119,31 +119,37 @@ $(function() {
   setInterval(updatePreview, 300);
 
 
-  var sync = function() {
-    var htmlContent = html.getValue();
-    var cssContent = css.getValue();
-    var jsContent = js.getValue();
+  var initialize = function() {
+    var sync = function() {
+      var htmlContent = html.getValue();
+      var cssContent = css.getValue();
+      var jsContent = js.getValue();
 
-    position.html = html.getCursor();
-    position.css = css.getCursor();
-    position.js = js.getCursor();
+      position.html = html.getCursor();
+      position.css = css.getCursor();
+      position.js = js.getCursor();
 
-    appRef.set({
-      htmlBox: {
-        text: htmlContent
-      },
-      cssBox: {
-        text: cssContent
-      },
-      jsBox: {
-        text: jsContent
-      }
+      appRef.set({
+        htmlBox: {
+          text: htmlContent
+        },
+        cssBox: {
+          text: cssContent
+        },
+        jsBox: {
+          text: jsContent
+        }
+      });
+    };
+
+    appRef.on('value', function(data) {
+      setInterval(sync, 0);
     });
   };
 
-  setTimeout(function() {
-    setInterval(sync, 0);
-  }, 1500);
+  initialize();
+
+  
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
