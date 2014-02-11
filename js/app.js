@@ -1,8 +1,30 @@
 $(function() {
 
+  var appRef = new Firebase("https://mesh-editor.firebaseio.com/");
+
   /************
     TEXT BOXES
    ************/
+
+  appRef.set({
+    htmlBox: "<!-- Insert your HTML here -->\n" +
+          "<p><span>Mesh</span> up your\n" +
+          "HTML, CSS and JavaScript.<br /><br />\n\n" +
+          "For maximum pleasure,\n" +
+          "drag and resize the preview box\n" +
+          "by slowly using your pointer\n" +
+          "along its sexy border lines.<br /><br />\n\n" + 
+          "To spice it up, you can turn on/off the lights.</p>\n",
+
+    cssBox:  "/* Insert your CSS here */\n" +
+          "* { padding: 5px; color: #999; }\n" +
+          "span { color: red; }\n",
+
+    jsBox:   "/* Insert your JavaScript here */\n" +
+          "$('body').click(function() {\n" + 
+          "\tconsole.log(\"jQuery's also meshed\");\n" +
+          "});\n"
+  });
 
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     lineNumbers: true,
@@ -23,37 +45,33 @@ $(function() {
     mode: "text/javascript"
   });
 
-  var htmlVal = "<!-- Insert your HTML here -->\n" +
-                "<p><span>Mesh</span> up your\n" +
-                "HTML, CSS and JavaScript.<br /><br />\n\n" +
-                "For maximum pleasure,\n" +
-                "drag and resize the preview box\n" +
-                "by slowly using your pointer\n" +
-                "along its sexy border lines.<br /><br />\n\n" + 
-                "To spice it up, you can turn on/off the lights.</p>\n";
+  appRef.on('value', function(snapshot) {
+    return html.setValue(snapshot.val().htmlBox);
+  });
 
-  var cssVal  = "/* Insert your CSS here */\n" +
-                "* { padding: 5px; color: #999; }\n" +
-                "span { color: red; }\n";
+  appRef.on('value', function(snapshot) {
+    return css.setValue(snapshot.val().cssBox);
+  });
 
-  var jsVal   = "/* Insert your JavaScript here */\n" +
-                "$('body').click(function() {\n" + 
-                "\tconsole.log(\"jQuery's also meshed\");\n" +
-                "});\n";
-
-  html.setValue(htmlVal);
-  css.setValue(cssVal);
-  js.setValue(jsVal);
+  appRef.on('value', function(snapshot) {
+    return js.setValue(snapshot.val().jsBox);
+  });
 
 
   /************************
     Iframe Content Builder 
    ************************/
 
-  var buildContent = function() {
+  var getContent = function() {
     var htmlContent = html.getValue();
     var cssContent = css.getValue();
     var jsContent = js.getValue();
+
+    appRef.set({
+      htmlBox: htmlContent,
+      cssBox: cssContent,
+      jsBox: jsContent
+    });
 
     return "<link rel=\"stylesheet\" " +
       "href=\"http://raw.github.com/necolas/normalize.css/master/normalize.css\" " +
@@ -91,21 +109,23 @@ $(function() {
     clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
   });
-  
+
   var updatePreview = function() {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(buildContent());
+    preview.write(getContent());
     preview.close();
   }
-  setTimeout(updatePreview, 300);
 
-  $('.lights').click(function(el) {
-    el.preventDefault();
-    $('.cm-s-default').toggleClass('cm-s-monokai');
-    $(this).toggleClass('lights-on');
-  }).click();
+  // setInterval(updatePreview, 300);
+  // setTimeout(update, 1000);
+
+  // $('.lights').click(function(el) {
+  //   el.preventDefault();
+  //   $('.cm-s-default').toggleClass('cm-s-monokai');
+  //   $(this).toggleClass('lights-on');
+  // }).click();
 
   /*************************
     Dynamic Text Box Sizing 
