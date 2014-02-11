@@ -6,26 +6,6 @@ $(function() {
     TEXT BOXES
    ************/
 
-  appRef.set({
-    htmlBox: "<!-- Insert your HTML here -->\n" +
-          "<p><span>Mesh</span> up your\n" +
-          "HTML, CSS and JavaScript.<br /><br />\n\n" +
-          "For maximum pleasure,\n" +
-          "drag and resize the preview box\n" +
-          "by slowly using your pointer\n" +
-          "along its sexy border lines.<br /><br />\n\n" + 
-          "To spice it up, you can turn on/off the lights.</p>\n",
-
-    cssBox:  "/* Insert your CSS here */\n" +
-          "* { padding: 5px; color: #999; }\n" +
-          "span { color: red; }\n",
-
-    jsBox:   "/* Insert your JavaScript here */\n" +
-          "$('body').click(function() {\n" + 
-          "\tconsole.log(\"jQuery's also meshed\");\n" +
-          "});\n"
-  });
-
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     lineNumbers: true,
     lineWrapping: true,
@@ -45,16 +25,34 @@ $(function() {
     mode: "text/javascript"
   });
 
-  appRef.on('value', function(snapshot) {
-    return html.setValue(snapshot.val().htmlBox);
-  });
+  var empty = !!(html.getValue() || css.getValue() || js.getValue());
+
+  if (empty) {
+    appRef.set({
+    htmlBox:  "<!-- Insert your HTML here -->\n" +
+              "<p><span>Mesh</span> up your\n" +
+              "HTML, CSS and JavaScript.<br /><br />\n\n" +
+              "For maximum pleasure,\n" +
+              "drag and resize the preview box\n" +
+              "by slowly using your pointer\n" +
+              "along its sexy border lines.<br /><br />\n\n" + 
+              "To spice it up, you can turn on/off the lights.</p>\n",
+
+    cssBox:   "/* Insert your CSS here */\n" +
+              "* { padding: 5px; color: #999; }\n" +
+              "span { color: red; }\n",
+
+    jsBox:    "/* Insert your JavaScript here */\n" +
+              "$('body').click(function() {\n" + 
+              "\tconsole.log(\"jQuery's also meshed\");\n" +
+              "});\n"
+    });
+  }
 
   appRef.on('value', function(snapshot) {
-    return css.setValue(snapshot.val().cssBox);
-  });
-
-  appRef.on('value', function(snapshot) {
-    return js.setValue(snapshot.val().jsBox);
+    html.setValue(snapshot.val().htmlBox);
+    css.setValue(snapshot.val().cssBox);
+    js.setValue(snapshot.val().jsBox);
   });
 
 
@@ -119,13 +117,12 @@ $(function() {
   }
 
   // setInterval(updatePreview, 300);
-  // setTimeout(update, 1000);
 
-  // $('.lights').click(function(el) {
-  //   el.preventDefault();
-  //   $('.cm-s-default').toggleClass('cm-s-monokai');
-  //   $(this).toggleClass('lights-on');
-  // }).click();
+  $('.lights').click(function(el) {
+    el.preventDefault();
+    $('.cm-s-default').toggleClass('cm-s-monokai');
+    $(this).toggleClass('lights-on');
+  }).click();
 
   /*************************
     Dynamic Text Box Sizing 
