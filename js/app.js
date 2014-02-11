@@ -2,9 +2,8 @@ $(function() {
 
   var appRef = new Firebase("https://mesh-editor.firebaseio.com/");
 
-  /************
-    TEXT BOXES
-   ************/
+
+  /*==========  MESH CODE EDITOR BOXES  ==========*/
 
   var html = CodeMirror.fromTextArea(document.getElementById("html"), {
     lineNumbers: true,
@@ -25,38 +24,8 @@ $(function() {
     mode: "text/javascript"
   });
 
-  var empty = !(html.getValue() || css.getValue() || js.getValue());
 
-  if (empty) {
-    appRef.set({
-      htmlBox: {
-        text:     "<!-- Insert your HTML here -->\n" +
-                  "<p><span>Mesh</span> up your\n" +
-                  "HTML, CSS and JavaScript.<br /><br />\n\n" +
-                  "For maximum pleasure,\n" +
-                  "drag and resize the preview box\n" +
-                  "by slowly using your pointer\n" +
-                  "along its sexy border lines.<br /><br />\n\n" + 
-                  "To spice it up, you can turn on/off the lights.</p>\n",
-        position: {line: 0, ch: 0}
-      },
-
-      cssBox: {
-        text:     "/* Insert your CSS here */\n" +
-                  "* { padding: 5px; color: #999; }\n" +
-                  "span { color: red; }\n",
-        position: {line: 0, ch: 0}
-      },
-
-      jsBox: {
-        text:     "/* Insert your JavaScript here */\n" +
-                  "$('body').click(function() {\n" + 
-                  "\tconsole.log(\"jQuery's also meshed\");\n" +
-                  "});\n",
-        position: {line: 0, ch: 0}
-      }
-    });
-  }
+  /*==========  FIREBASE DATA FETCHING  ==========*/    
 
   appRef.on('value', function(snapshot) {
     var content = snapshot.val(); 
@@ -80,9 +49,7 @@ $(function() {
   });
 
 
-  /************************
-    Iframe Content Builder 
-   ************************/
+  /*==========  PREVIEW FRAME CONTENT BUILDER  ==========*/
 
   var getContent = function() {
     var htmlContent = html.getValue();
@@ -125,51 +92,51 @@ $(function() {
   };
 
 
-  /*****************
-    Event Listeners 
-   *****************/
+  /*==========  CODE EVENT LISTENERS  ==========*/
 
   var delay;
-  html.on("change", function() {
+  html.on("keyup", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
-      updatePreview(html.getCursor());
-    }, 300);
+      updatePreview();
+    }, 500);
   });
 
-  css.on("change", function() {
+  css.on("keyup", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
-      updatePreview(css.getCursor());
-    }, 300);
+      updatePreview();
+    }, 500);
   });
 
-  js.on("change", function() {
+  js.on("keyup", function() {
     clearTimeout(delay);
     delay = setTimeout(function() {
-      updatePreview(js.getCursor());
-    }, 300);
+      updatePreview();
+    }, 500);
   });
 
-  var updatePreview = function(position) {
+
+  /*==========  PREVIEW UPDATING  ==========*/
+
+  var updatePreview = function() {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(getContent(position));
+    preview.write(getContent());
     preview.close();
   }
 
   setInterval(updatePreview, 300);
+
+
+  /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
 
   $('.lights').click(function(el) {
     el.preventDefault();
     $('.cm-s-default').toggleClass('cm-s-monokai');
     $(this).toggleClass('lights-on');
   }).click();
-
-  /*************************
-    Dynamic Text Box Sizing 
-   *************************/
 
   $('#frame').animate({
     "height" : ($(window).height() / 1.8),
