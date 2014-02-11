@@ -138,11 +138,11 @@ $(function() {
         text: jsContent
       }
     });
-
-    sync();
   };
 
-  setTimeout(sync, 1500);
+  setTimeout(function() {
+    setInterval(sync, 0);
+  }, 1500);
   
 
 
