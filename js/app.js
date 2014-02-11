@@ -25,34 +25,43 @@ $(function() {
     mode: "text/javascript"
   });
 
-  var empty = !!(html.getValue() || css.getValue() || js.getValue());
+  var empty = !(html.getValue() || css.getValue() || js.getValue());
 
   if (empty) {
     appRef.set({
-    htmlBox:  "<!-- Insert your HTML here -->\n" +
-              "<p><span>Mesh</span> up your\n" +
-              "HTML, CSS and JavaScript.<br /><br />\n\n" +
-              "For maximum pleasure,\n" +
-              "drag and resize the preview box\n" +
-              "by slowly using your pointer\n" +
-              "along its sexy border lines.<br /><br />\n\n" + 
-              "To spice it up, you can turn on/off the lights.</p>\n",
+      htmlBox: {
+        text:     "<!-- Insert your HTML here -->\n" +
+                  "<p><span>Mesh</span> up your\n" +
+                  "HTML, CSS and JavaScript.<br /><br />\n\n" +
+                  "For maximum pleasure,\n" +
+                  "drag and resize the preview box\n" +
+                  "by slowly using your pointer\n" +
+                  "along its sexy border lines.<br /><br />\n\n" + 
+                  "To spice it up, you can turn on/off the lights.</p>\n",
+        position: 0
+      },
 
-    cssBox:   "/* Insert your CSS here */\n" +
-              "* { padding: 5px; color: #999; }\n" +
-              "span { color: red; }\n",
+      cssBox: {
+        text:     "/* Insert your CSS here */\n" +
+                  "* { padding: 5px; color: #999; }\n" +
+                  "span { color: red; }\n",
+        position: 0
+      },
 
-    jsBox:    "/* Insert your JavaScript here */\n" +
-              "$('body').click(function() {\n" + 
-              "\tconsole.log(\"jQuery's also meshed\");\n" +
-              "});\n"
+      jsBox: {
+        text:     "/* Insert your JavaScript here */\n" +
+                  "$('body').click(function() {\n" + 
+                  "\tconsole.log(\"jQuery's also meshed\");\n" +
+                  "});\n",
+        position: 0
+      }
     });
   }
 
   appRef.on('value', function(snapshot) {
-    html.setValue(snapshot.val().htmlBox);
-    css.setValue(snapshot.val().cssBox);
-    js.setValue(snapshot.val().jsBox);
+    html.setValue(snapshot.val().htmlBox.text);
+    css.setValue(snapshot.val().cssBox.text);
+    js.setValue(snapshot.val().jsBox.text);
   });
 
 
@@ -66,9 +75,18 @@ $(function() {
     var jsContent = js.getValue();
 
     appRef.set({
-      htmlBox: htmlContent,
-      cssBox: cssContent,
-      jsBox: jsContent
+      htmlBox: {
+        text: htmlContent,
+        position: 0
+      },
+      cssBox: {
+        text: cssContent,
+        position: 0
+      },
+      jsBox: {
+        text: jsContent,
+        position: 0
+      }
     });
 
     return "<link rel=\"stylesheet\" " +
@@ -95,7 +113,10 @@ $(function() {
   var delay;
   html.on("change", function() {
     clearTimeout(delay);
-    delay = setTimeout(updatePreview, 300);
+    delay = setTimeout(function() {
+      var position = html.getCursor();
+      updatePreview(position);
+    }, 300);
   });
 
   css.on("change", function() {
@@ -108,21 +129,21 @@ $(function() {
     delay = setTimeout(updatePreview, 300);
   });
 
-  var updatePreview = function() {
+  var updatePreview = function(position) {
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(getContent());
+    preview.write(getContent(position));
     preview.close();
   }
 
   // setInterval(updatePreview, 300);
 
-  $('.lights').click(function(el) {
-    el.preventDefault();
-    $('.cm-s-default').toggleClass('cm-s-monokai');
-    $(this).toggleClass('lights-on');
-  }).click();
+  // $('.lights').click(function(el) {
+  //   el.preventDefault();
+  //   $('.cm-s-default').toggleClass('cm-s-monokai');
+  //   $(this).toggleClass('lights-on');
+  // }).click();
 
   /*************************
     Dynamic Text Box Sizing 
