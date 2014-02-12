@@ -154,7 +154,7 @@ $(function() {
   $('.together').click(function(el) {
     el.preventDefault();
     $(this).toggleClass('button-on');
-  });
+  }).click();
 
   $('#frame').animate({
     "height" : ($(window).height() / 1.8),
