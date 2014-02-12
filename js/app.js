@@ -14,20 +14,20 @@ $(function() {
 
   /*==========  MESH CODE EDITOR BOXES  ==========*/
 
-  var html = CodeMirror.fromTextArea(document.getElementById("html"), {
+  var htmlBox = CodeMirror.fromTextArea(document.getElementById("html"), {
     lineNumbers: true,
     lineWrapping: true,
     mode: 'xml',
     htmlMode: true
   });
 
-  var css = CodeMirror.fromTextArea(document.getElementById("css"), {
+  var cssBox = CodeMirror.fromTextArea(document.getElementById("css"), {
     lineNumbers: true,
     lineWrapping: true,
     mode: "text/css"
   });
 
-  var js = CodeMirror.fromTextArea(document.getElementById("js"), {
+  var jsBox = CodeMirror.fromTextArea(document.getElementById("js"), {
     lineNumbers: true,
     lineWrapping: true,
     mode: "text/javascript"
@@ -42,22 +42,22 @@ $(function() {
     var content = snapshot.val();
     
     notifyFireBase = false;
-    html.setValue(content.htmlBox.text);
-    css.setValue(content.cssBox.text);
-    js.setValue(content.jsBox.text);
+    htmlBox.setValue(content.html.text);
+    cssBox.setValue(content.css.text);
+    jsBox.setValue(content.js.text);
     notifyFireBase = true;
     
-    html.setCursor({
+    htmlBox.setCursor({
       line: position.html.line,
       ch: position.html.ch
     });
 
-    css.setCursor({
+    cssBox.setCursor({
       line: position.css.line,
       ch: position.css.ch
     });
 
-    js.setCursor({
+    jsBox.setCursor({
       line: position.js.line,
       ch: position.js.ch
     });
@@ -68,9 +68,9 @@ $(function() {
   /*==========  PREVIEW FRAME CONTENT BUILDER  ==========*/
 
   var getContent = function() {
-    var htmlContent = html.getValue();
-    var cssContent = css.getValue();
-    var jsContent = js.getValue();
+    var htmlContent = htmlBox.getValue();
+    var cssContent  = cssBox.getValue();
+    var jsContent   = jsBox.getValue();
 
     return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
       + '<style>'
@@ -88,38 +88,38 @@ $(function() {
   /*==========  CODE EVENT LISTENERS  ==========*/
 
   var sync = function() {
-    var htmlContent = html.getValue();
-    var cssContent = css.getValue();
-    var jsContent = js.getValue();
-
-    position.html = html.getCursor();
-    position.css = css.getCursor();
-    position.js = js.getCursor();
+    var htmlContent = htmlBox.getValue();
+    var cssContent  = cssBox.getValue();
+    var jsContent   = jsBox.getValue();
+    
+    position.html   = htmlBox.getCursor();
+    position.css    = cssBox.getCursor();
+    position.js     = jsBox.getCursor();
 
     appRef.set({
-      htmlBox: {
+      html: {
         text: htmlContent
       },
-      cssBox: {
+      css: {
         text: cssContent
       },
-      jsBox: {
+      js: {
         text: jsContent
       }
     });
   };
   
-  html.on("change", function() {
+  htmlBox.on("change", function() {
     updatePreview();
     if (notifyFireBase) sync();
   });
 
-  css.on("change", function() {
+  cssBox.on("change", function() {
     updatePreview();
     if (notifyFireBase) sync();
   });
 
-  js.on("change", function() {
+  jsBox.on("change", function() {
     updatePreview();
     if (notifyFireBase) sync();
   });
