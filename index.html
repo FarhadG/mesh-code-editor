@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="./css/reset.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <script src="https://togetherjs.com/togetherjs-min.js"></script>
   <script src="./js/vendor/codemirror.js"></script>
   <script src="./js/vendor/css.js"></script>
   <script src="./js/vendor/htmlmixed.js"></script>
@@ -18,7 +19,8 @@
 <body class="cm-s-default">
 
   <div id="controls">
-    <a href="#" class="lights" title="turn on/off the lights"></a>
+    <a class="button together" onclick="TogetherJS(this); return false;"></a>
+    <a href="#" class="button lights" title="turn on/off the lights"></a>
   </div>
 
   <textarea id="html"></textarea>

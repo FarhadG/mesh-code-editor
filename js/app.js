@@ -2,7 +2,6 @@ $(function() {
 
   var appRef = new Firebase('https://mesh-editor.firebaseio.com/');
 
-
   /*==========  User's Cursor  ==========*/
   
   var position = {
@@ -149,8 +148,13 @@ $(function() {
   $('.lights').click(function(el) {
     el.preventDefault();
     $('.cm-s-default').toggleClass('cm-s-monokai');
-    $(this).toggleClass('lights-on');
+    $(this).toggleClass('button-on');
   }).click();
+
+  $('.together').click(function(el) {
+    el.preventDefault();
+    $(this).toggleClass('button-on');
+  });
 
   $('#frame').animate({
     "height" : ($(window).height() / 1.8),

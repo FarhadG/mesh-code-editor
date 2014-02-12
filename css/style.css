@@ -398,28 +398,38 @@ div.CodeMirror {
   z-index: 999;
 }
 
-.lights {
-  background: url('');
-  transition: all .3s ease;
-  background-color: #555550;
-  width: 30px;
-  height: 30px;
-  display: block;
-  box-shadow: inset 0px 2px 2px 1px #000;
-  border-radius: 3px;
-}
-
-.lights-on {
+.button {
   transition: all .3s ease;
   background-color: #3D3D3B;
-  box-shadow: 0px 1px 0px 0px #000, 
+  width: 40px;
+  height: 40px;
+  display: block;
+  box-shadow: inset 0px 1px 1px 1px #000;
+}
+
+.button-on {
+  transition: all .3s ease;
+  background-color: #3D3D3B;
+  box-shadow: 0px 1px 0px 1px rgba(0,0,0,.5), 
               inset 0px 1px 0px 0px rgba(255,255,255,.3);
 }
 
-.lights:hover {
+.button:hover {
+  background-color: #555550;
+}
+
+.button-on:hover {
   background-color: #3D3D3B;
 }
 
-.lights-on:hover {
-  background-color: #555550;
+.lights {
+  background: url('http://i60.tinypic.com/2wdslf6.png') no-repeat;
+  background-color: #3D3D3B;
+  background-position: 8px;
+}
+
+.together {
+  background: url('http://i61.tinypic.com/vyw3h4.png') no-repeat;
+  background-color: #3D3D3B;
+  background-position: 8px;
 }
