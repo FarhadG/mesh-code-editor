@@ -414,12 +414,8 @@ div.CodeMirror {
               inset 0px 1px 0px 0px rgba(255,255,255,.3);
 }
 
-.button:hover {
+.button:hover, .button-on:hover {
   background-color: #555550;
-}
-
-.button-on:hover {
-  background-color: #3D3D3B;
 }
 
 .lights {
