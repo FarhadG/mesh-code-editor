@@ -71,6 +71,11 @@ $(function() {
     var cssContent  = cssBox.getValue();
     var jsContent   = jsBox.getValue();
 
+    // If the code boxes are empty, set default text
+    if ( !(htmlContent || cssContent || jsContent) ) {
+      reset();
+    }
+
     return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
       + '<style>'
         + cssContent 
@@ -87,40 +92,29 @@ $(function() {
   /*==========  CODE EVENT LISTENERS  ==========*/  
 
   var reset = function() {
-    var htmlContent = htmlBox.getValue();
-    var cssContent  = cssBox.getValue();
-    var jsContent   = jsBox.getValue();
-    
-    position.html   = htmlBox.getCursor();
-    position.css    = cssBox.getCursor();
-    position.js     = jsBox.getCursor();
-
-    // If the code boxes are empty, set default text
-    if ( !(htmlContent || cssContent || jsContent ) {
-      appRef.set({
-        html: {
-          text: '<!-- HTML -->'
-                + '<h1> MESH </h1>'
-                + '<ul>'
-                  + '<li> Collaborative Code Editor </li>'
-                  + '<li> Live Preview Box (Draggabe & Resizable) </li>'
-                  + '<li> Dark and Light Theme </li>'
-                  + '<li> Syntax Highlighting </li>'
-                + '</ul>'
-        },
-        css: {
-          text: '/* CSS */'
-                + 'body { background: #444; color: #aaa; line-height: 1.7}'
-                + 'h1 { padding: 0px 40px; color: gold; }'
-        },
-        js: {
-          text: '// JavaScript & jQuery'
-                + '$('body').click(function() {'
-                  + 'confirm("You\'re awesome, you know that?");'
-                + '});'
-        }
-      });
-    }
+    appRef.set({
+      html: {
+        text: '<!-- HTML -->'
+              + '<h1> MESH </h1>'
+              + '<ul>'
+                + '<li> Collaborative Code Editor </li>'
+                + '<li> Live Preview Box (Draggabe & Resizable) </li>'
+                + '<li> Dark and Light Theme </li>'
+                + '<li> Syntax Highlighting </li>'
+              + '</ul>'
+      },
+      css: {
+        text: '/* CSS */'
+              + 'body { background: #444; color: #aaa; line-height: 1.7}'
+              + 'h1 { padding: 0px 40px; color: gold; }'
+      },
+      js: {
+        text: '// JavaScript & jQuery'
+              + '$('body').click(function() {'
+                + 'confirm("You\'re awesome, you know that?");'
+              + '});'
+      }
+    });
   };
 
   var sync = function() {
