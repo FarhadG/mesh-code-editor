@@ -94,25 +94,25 @@ $(function() {
   var reset = function() {
     appRef.set({
       html: {
-        text: '<!-- HTML -->'
-              + '<h1> MESH </h1>'
-              + '<ul>'
-                + '<li> Collaborative Code Editor </li>'
-                + '<li> Live Preview Box (Draggabe & Resizable) </li>'
-                + '<li> Dark and Light Theme </li>'
-                + '<li> Syntax Highlighting </li>'
-              + '</ul>'
+        text: ['<!-- HTML -->',
+              '<h1> MESH </h1>',
+              '<ul>',
+              '  <li> Collaborative Code Editor </li>',
+              '  <li> Live Preview Box (Draggabe & Resizable) </li>',
+              '  <li> Dark and Light Theme </li>',
+              '  <li> Syntax Highlighting </li>',
+              '</ul>'].join('\n')
       },
       css: {
-        text: '/* CSS */'
-              + 'body { background: #444; color: #aaa; line-height: 1.7}'
-              + 'h1 { padding: 0px 40px; color: gold; }'
+        text: ['/* CSS */',
+              'body { background: #444; color: #aaa; line-height: 1.7 }',
+              'h1 { padding: 0px 40px; color: gold; }'].join('\n')
       },
       js: {
-        text: '// JavaScript & jQuery'
-              + '$('body').click(function() {'
-                + 'confirm("You\'re awesome, you know that?");'
-              + '});'
+        text: ['// JavaScript & jQuery',
+              '$(\'body\').click(function() {',
+              '  confirm("You\'re awesome, you know that?");',
+              '});'].join('\n')
       }
     });
   };
