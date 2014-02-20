@@ -72,9 +72,8 @@ $(function() {
     var jsContent   = jsBox.getValue();
 
     // If the code boxes are empty, set default text
-    if ( !(htmlContent || cssContent || jsContent) ) {
-      reset();
-    }
+    var emptyBoxes = !(htmlContent || cssContent || jsContent);
+    if (emptyBoxes) reset();
 
     return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
       + '<style>'
@@ -95,7 +94,7 @@ $(function() {
     appRef.set({
       html: {
         text: ['<!-- HTML -->',
-              '<h1> MESH </h1>',
+              '<h1>[ mesh ]</h1>',
               '<ul>',
               '  <li> Collaborative Code Editor </li>',
               '  <li> Live Preview Box (Draggabe & Resizable) </li>',
@@ -105,7 +104,7 @@ $(function() {
       },
       css: {
         text: ['/* CSS */',
-              'body { background: #444; color: #aaa; line-height: 1.7 }',
+              'body { background: #3D3D3B; color: #aaa; line-height: 1.7 }',
               'h1 { padding: 0px 40px; color: gold; }'].join('\n')
       },
       js: {
