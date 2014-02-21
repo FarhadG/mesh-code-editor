@@ -104,8 +104,9 @@ $(function() {
       },
       css: {
         text: ['/* CSS */',
-              'body { background: #3D3D3B; color: #aaa; line-height: 1.7 }',
-              'h1 { padding: 0px 40px; color: gold; }'].join('\n')
+              'body { background: #3D3D3B; color: #aaa; }',
+              'h1 { padding: 0px 40px; color: gold; }',
+              'li { line-height: 1.7; }'].join('\n')
       },
       js: {
         text: ['// JavaScript & jQuery',
