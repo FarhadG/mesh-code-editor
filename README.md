@@ -1,4 +1,4 @@
-MESH 
+MESH
 ====
 
 Mesh is a sleek collaborative online code editor for HTML, CSS, JavaScript, and jQuery.
@@ -8,20 +8,6 @@ This project is in its early stages and will continue to grow with new features.
 ## Demo
 
 Click for a demo: <a href="http://farhadg.github.io/mesh-code-editor" target="_blank">Mesh Code Editor</a>.
-
-## Languages
-
-<table>
-<tr>
-<td>HTML</td>
-<td>CSS</td>
-</tr>
-
-<tr>
-<td>JavaScript</td>
-<td>jQuery</td>
-</tr>
-</table>
 
 ## Installation
 
@@ -40,6 +26,14 @@ The preview box can be adjusted and dragged around. Be sure to select and drag a
 You can also switch between a dark or light theme.
 
 For basic editor modifications, checkout `js/app.js` and `css/style.css`.
+
+<table>
+<tr>
+<td>HTML</td>
+<td>CSS</td>
+<td>JavaScript (jQuery)</td>
+</tr>
+</table>
 
 ## Options
 
