@@ -1,9 +1,10 @@
 $(function() {
 
+  var $window = $(window);
   var appRef = new Firebase('https://mesh-editor.firebaseio.com/');
 
   /*==========  User's Cursor  ==========*/
-  
+
   var position = {
     html: { line: 0, ch: 0 },
     css:  { line: 0, ch: 0 },
@@ -13,39 +14,39 @@ $(function() {
 
   /*==========  MESH CODE EDITOR BOXES  ==========*/
 
-  var htmlBox = CodeMirror.fromTextArea(document.getElementById("html"), {
+  var htmlBox = CodeMirror.fromTextArea(document.getElementById('html'), {
     lineNumbers: true,
     lineWrapping: true,
     mode: 'xml',
     htmlMode: true
   });
 
-  var cssBox = CodeMirror.fromTextArea(document.getElementById("css"), {
+  var cssBox = CodeMirror.fromTextArea(document.getElementById('css'), {
     lineNumbers: true,
     lineWrapping: true,
-    mode: "text/css"
+    mode: 'text/css'
   });
 
-  var jsBox = CodeMirror.fromTextArea(document.getElementById("js"), {
+  var jsBox = CodeMirror.fromTextArea(document.getElementById('js'), {
     lineNumbers: true,
     lineWrapping: true,
-    mode: "text/javascript"
+    mode: 'text/javascript'
   });
 
 
-  /*==========  FIREBASE DATA FETCHING  ==========*/    
+  /*==========  FIREBASE DATA FETCHING  ==========*/
 
   var notifyFireBase = true;
 
   appRef.on('value', function(snapshot) {
     var content = snapshot.val();
-    
+
     notifyFireBase = false;
     htmlBox.setValue(content.html.text);
     cssBox.setValue(content.css.text);
     jsBox.setValue(content.js.text);
     notifyFireBase = true;
-    
+
     htmlBox.setCursor({
       line: position.html.line,
       ch: position.html.ch
@@ -71,13 +72,41 @@ $(function() {
     var cssContent  = cssBox.getValue();
     var jsContent   = jsBox.getValue();
 
-    // If the code boxes are empty, set default text
+    var reset = function() {
+      appRef.set({
+        html: {
+          text: ['<!-- HTML -->',
+                '<h1>[ mesh ]</h1>',
+                '<ul>',
+                '  <li> Realtime, Collaborative Code Editor </li>',
+                '  <li> Live Preview Box (Draggabe & Resizable) </li>',
+                '  <li> Dark and Light Theme </li>',
+                '  <li> Syntax Highlighting </li>',
+                '</ul>'].join('\n')
+        },
+        css: {
+          text: ['/* CSS */',
+                'body { background: #3D3D3B; color: #aaa; }',
+                'h1 { padding: 0px 40px; color: gold; }',
+                'li { line-height: 1.7; }'].join('\n')
+        },
+        js: {
+          text: ['// JavaScript & jQuery',
+                '$(\'body\').click(function() {',
+                '  confirm("You\'re awesome, you know that?");',
+                '});'].join('\n')
+        }
+      });
+    };
+
+    // Helper function for resetting editors, once every day or if they're empty
+    setInterval(reset, 86400000);
     var emptyBoxes = !(htmlContent || cssContent || jsContent);
     if (emptyBoxes) reset();
 
     return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
       + '<style>'
-        + cssContent 
+        + cssContent
       + '</style>'
       + htmlContent
       + '<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>'
@@ -88,40 +117,13 @@ $(function() {
       + '</script>'
   };
 
-  /*==========  CODE EVENT LISTENERS  ==========*/  
-
-  var reset = function() {
-    appRef.set({
-      html: {
-        text: ['<!-- HTML -->',
-              '<h1>[ mesh ]</h1>',
-              '<ul>',
-              '  <li> Collaborative Code Editor </li>',
-              '  <li> Live Preview Box (Draggabe & Resizable) </li>',
-              '  <li> Dark and Light Theme </li>',
-              '  <li> Syntax Highlighting </li>',
-              '</ul>'].join('\n')
-      },
-      css: {
-        text: ['/* CSS */',
-              'body { background: #3D3D3B; color: #aaa; }',
-              'h1 { padding: 0px 40px; color: gold; }',
-              'li { line-height: 1.7; }'].join('\n')
-      },
-      js: {
-        text: ['// JavaScript & jQuery',
-              '$(\'body\').click(function() {',
-              '  confirm("You\'re awesome, you know that?");',
-              '});'].join('\n')
-      }
-    });
-  };
+  /*==========  CODE EVENT LISTENERS  ==========*/
 
   var sync = function() {
     var htmlContent = htmlBox.getValue();
     var cssContent  = cssBox.getValue();
     var jsContent   = jsBox.getValue();
-    
+
     position.html   = htmlBox.getCursor();
     position.css    = cssBox.getCursor();
     position.js     = jsBox.getCursor();
@@ -138,18 +140,18 @@ $(function() {
       }
     });
   };
-  
-  htmlBox.on("change", function() {
+
+  htmlBox.on('change', function() {
     updatePreview();
     if (notifyFireBase) sync();
   });
 
-  cssBox.on("change", function() {
+  cssBox.on('change', function() {
     updatePreview();
     if (notifyFireBase) sync();
   });
 
-  jsBox.on("change", function() {
+  jsBox.on('change', function() {
     updatePreview();
     if (notifyFireBase) sync();
   });
@@ -171,7 +173,7 @@ $(function() {
     delay = setTimeout(update, 500);
   }
 
-  setInterval(updatePreview, 1000);  
+  setInterval(updatePreview, 1000);
 
 
   /*==========  STYLING & DYNAMIC BOX SIZING  ==========*/
@@ -188,11 +190,11 @@ $(function() {
   }).click();
 
   $('#frame').animate({
-    "height" : ($(window).height() / 1.8),
-    "width"  : ($(window).width() / 2)
+    'height': ($window.height() / 1.8),
+    'width': ($window.width() / 2)
   }, 1000);
 
-  var resizeBoxes = function() { 
+  var resizeBoxes = function() {
     var windowHeight = $(window).height();
     var windowWidth  = $(window).width();
     $textBoxes = $('.CodeMirror');
@@ -204,7 +206,7 @@ $(function() {
 
   resizeBoxes();
 
-  $(window).resize(function() {
+  $window.resize(function() {
     resizeBoxes();
   });
 
