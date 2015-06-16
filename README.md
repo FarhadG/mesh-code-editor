@@ -1,9 +1,9 @@
-MESH
-====
+# MESH
+> A sleek, collaborative, online code editor for HTML, CSS, JavaScript
 
-Mesh is a sleek collaborative online code editor for HTML, CSS, JavaScript, and jQuery.
+---
 
-This project is in its early stages and will continue to grow with new features. If something is not working or you would like a new feature, please use the issues page.
+This project won Firebase's solo hackathon when their API was first exposed. That said, it will continue to grow (and be updated) with new features. If something is not working or you would like a new feature, please use the issues page.
 
 ## Demo
 
