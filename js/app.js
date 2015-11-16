@@ -99,8 +99,8 @@ $(function() {
       });
     };
 
-    // Helper function for resetting editors, once every day or if they're empty
-    setInterval(reset, 86400000);
+    // Helper function (for demo) for resetting editors, once every hour
+    setInterval(reset, 3600000);
 
     return '<link rel="stylesheet" href="http://raw.github.com/necolas/normalize.css/master/normalize.css" type="text/css">'
       + '<style>'
@@ -156,6 +156,7 @@ $(function() {
 
 
   /*==========  PREVIEW UPDATING  ==========*/
+
   var delay;
   var updatePreview = function() {
     clearTimeout(delay);
